@@ -61,4 +61,32 @@ public class StudentView {
             System.out.println("xóa thất bại, code ko tồn tại");
         }
     }
+
+    public int viewEdit(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" nhập mã sinh viên cần sửa: ");
+        int codeEdit = Integer.parseInt(sc.nextLine());
+        return codeEdit;
+    }
+
+    public Student editStudent() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Input new code: ");
+        int code = Integer.parseInt(sc.nextLine());
+        System.out.print("Input new name: ");
+        String name = sc.nextLine();
+        System.out.print("Input new address: ");
+        String address = sc.nextLine();
+        System.out.print("Input new classroom: ");
+        String classroom = sc.nextLine();
+        return new Student(code, name, address, classroom);
+    }
+
+    public void viewMessageEdit(boolean result) {
+        if (result) {
+            System.out.println("sửa thành công");
+        } else {
+            System.out.println("sửa thất bại, code ko tồn tại");
+        }
+    }
 }

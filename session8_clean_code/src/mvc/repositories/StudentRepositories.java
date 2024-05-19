@@ -1,6 +1,7 @@
 package mvc.repositories;
 
 import mvc.models.Student;
+import mvc.views.StudentView;
 
 public class StudentRepositories {
     private static Student[] arrStudent = new Student[100];
@@ -37,5 +38,36 @@ public class StudentRepositories {
         }
         return false;
     }
+//StudentView sv = new StudentView();
+//    int codeEdit = sv.viewEdit();
+//    public boolean update(StudentView studentView) {
+//        for (int i = 1; i < count; i++) {
+//            if (arrStudent[i].getCode() == studentView.viewEdit()) {
+//                arrStudent[i] = studentView.editStudent();
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+    StudentView sv = new StudentView();
+//    int codeEdit = sv.viewEdit();
 
+//    public boolean update(StudentView studentView){
+//        for (int i = 1; i < count; i++) {
+//            if (arrStudent[i].getCode() == studentView.viewEdit()) {
+//                arrStudent[i] = studentView.editStudent();
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+    public boolean update(int codeEdit) {
+        for (int i = 0; i < count; i++) {
+            if (arrStudent[i].getCode() == codeEdit) {
+                arrStudent[i] = sv.editStudent();
+                return true;
+            }
+        }
+        return false;
+    }
 }

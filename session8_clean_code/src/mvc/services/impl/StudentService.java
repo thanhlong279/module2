@@ -3,6 +3,7 @@ package mvc.services.impl;
 import mvc.models.Student;
 import mvc.repositories.StudentRepositories;
 import mvc.services.IStudentService;
+import mvc.views.StudentView;
 
 public class StudentService implements IStudentService {
     private StudentRepositories studentRepositories = new StudentRepositories();
@@ -44,5 +45,25 @@ public class StudentService implements IStudentService {
         return studentRepositories.delete(codeDelete);
     }
 
+    @Override
+    public boolean edit(int codeEdit) {
+        return studentRepositories.update(codeEdit);
+    }
 
+
+
+//    @Override
+//    public boolean validateCode(int code) {
+//        for (int i = 1; i < count; i++) {
+//            int codeSt = arrStudent[i].getCode();
+//            if (code == codeSt) {
+//                String addaca = "";
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        }
+//        return false;
+//    }
 }
+
