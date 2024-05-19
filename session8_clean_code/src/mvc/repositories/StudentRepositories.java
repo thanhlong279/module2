@@ -15,13 +15,27 @@ public class StudentRepositories {
         arrStudent[count] = student;
         count++;
     }
-    //
-    public Student[] getAll() {
+
+    //sao chép sang mảng mới để bảo đảm tính bao đóng dữ liệu
+    public Student[] copy() {
         Student[] newStudent = new Student[count];
         for (int i = 0; i < count; i++) {
             newStudent[i] = arrStudent[i];
         }
         return newStudent;
+    }
+
+    public boolean delete(int codeDelete) {
+        for (int i = 0; i < count; i++) {
+            if (arrStudent[i].getCode() == codeDelete) {
+                for (int j = i; j < count - 1; j++) {
+                    arrStudent[j] = arrStudent[j + 1];
+                }
+                arrStudent[--count] = null;
+                return true;
+            }
+        }
+        return false;
     }
 
 }

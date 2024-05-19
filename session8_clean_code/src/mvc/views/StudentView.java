@@ -29,11 +29,10 @@ public class StudentView {
         String address = sc.nextLine();
         System.out.print(" input classroom: ");
         String classroom = sc.nextLine();
-        Student student = new Student(code, name, address, classroom);
-        return student;
+        return new Student(code, name, address, classroom);
     }
 
-    public void viewMessage(boolean result) {
+    public void viewMessageAdd(boolean result) {
         if (result) {
             System.out.println("them moi thanh cong");
         } else {
@@ -41,9 +40,25 @@ public class StudentView {
         }
     }
 
-    public void viewDisplay(Student[] student) {
-        for (Student students : student) {
+    public void viewDisplay(Student[] students) {
+        System.out.println(" danh sách sinh viên: ");
+        for (Student student : students) {
             System.out.println(student.toString());
+        }
+    }
+
+    public int viewDelete() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" nhập code cần xóa: ");
+        int codeDelete = Integer.parseInt(sc.nextLine());
+        return codeDelete;
+    }
+
+    public void viewMessageDelete(boolean result) {
+        if (result) {
+            System.out.println("xóa thành công");
+        } else {
+            System.out.println("xóa thất bại, code ko tồn tại");
         }
     }
 }

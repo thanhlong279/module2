@@ -12,17 +12,21 @@ public class MainController {
         int choice;
         Student student;
         boolean result;
+        boolean resultDelete;
         while (true) {
             choice = studentView.view();
             switch (choice) {
                 case 1:
                     student = studentView.viewAdd();
                     result = studentService.add(student);
-                    studentView.viewMessage(result);
+                    studentView.viewMessageAdd(result);
                     break;
                 case 2:
-                    break;
+
                 case 3:
+                    int codeDelete = studentView.viewDelete();
+                    resultDelete = studentService.delete(codeDelete);
+                    studentView.viewMessageDelete(resultDelete);
                     break;
                 case 4:
                     Student[] students = studentService.getAll();

@@ -7,9 +7,8 @@ import mvc.services.IStudentService;
 public class StudentService implements IStudentService {
     private StudentRepositories studentRepositories = new StudentRepositories();
 
-    @Override
-    public boolean add(Student student) {
-        //kiểm tra dữ liệu
+    // kiểm tra dữ liệu của người dùng nhập vào cô đối tượng student
+    public boolean validateStudent(Student student) {
         if (student.getName().equals("")) {
             return false;
         }
@@ -22,13 +21,27 @@ public class StudentService implements IStudentService {
         if (student.getClassRoom().equals("")) {
             return false;
         }
-        studentRepositories.add(student);
         return true;
     }
 
     @Override
+    public boolean add(Student student) {
+        if (validateStudent(student)) {
+            studentRepositories.add(student);
+            return true;
+        }
+        return false;
+    }
+
+    // gọi pt copy của đối tượng studentRepo trả về 1 mảng chứa tất cả các đối tượng student
+    @Override
     public Student[] getAll() {
-        return studentRepositories.getAll();
+        return studentRepositories.copy();
+    }
+
+    @Override
+    public boolean delete(int codeDelete) {
+        return studentRepositories.delete(codeDelete);
     }
 
 
