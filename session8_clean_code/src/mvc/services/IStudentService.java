@@ -12,6 +12,4 @@ public interface IStudentService {
 
     boolean edit(int codeEdit);
 
-//    boolean validateCode(int code);
-
 }

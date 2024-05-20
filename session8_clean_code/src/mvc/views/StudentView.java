@@ -47,13 +47,6 @@ public class StudentView {
         }
     }
 
-    public int viewDelete() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println(" nhập code cần xóa: ");
-        int codeDelete = Integer.parseInt(sc.nextLine());
-        return codeDelete;
-    }
-
     public void viewMessageDelete(boolean result) {
         if (result) {
             System.out.println("xóa thành công");
@@ -62,11 +55,10 @@ public class StudentView {
         }
     }
 
-    public int viewEdit(){
+    public int inputCode(){
         Scanner sc = new Scanner(System.in);
-        System.out.println(" nhập mã sinh viên cần sửa: ");
-        int codeEdit = Integer.parseInt(sc.nextLine());
-        return codeEdit;
+        System.out.println(" nhập mã sinh viên cần sửa, xóa: ");
+        return  Integer.parseInt(sc.nextLine());
     }
 
     public Student editStudent() {

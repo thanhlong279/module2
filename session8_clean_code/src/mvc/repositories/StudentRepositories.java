@@ -6,6 +6,7 @@ import mvc.views.StudentView;
 public class StudentRepositories {
     private static Student[] arrStudent = new Student[100];
     private static int count = 0;
+    StudentView sv = new StudentView();
 
     static {
         arrStudent[0] = new Student(1, "HaiTT", "Quang Nam", "C0324H1");
@@ -26,9 +27,9 @@ public class StudentRepositories {
         return newStudent;
     }
 
-    public boolean delete(int codeDelete) {
+    public boolean delete(int inputCode) {
         for (int i = 0; i < count; i++) {
-            if (arrStudent[i].getCode() == codeDelete) {
+            if (arrStudent[i].getCode() == inputCode) {
                 for (int j = i; j < count - 1; j++) {
                     arrStudent[j] = arrStudent[j + 1];
                 }
@@ -38,32 +39,10 @@ public class StudentRepositories {
         }
         return false;
     }
-//StudentView sv = new StudentView();
-//    int codeEdit = sv.viewEdit();
-//    public boolean update(StudentView studentView) {
-//        for (int i = 1; i < count; i++) {
-//            if (arrStudent[i].getCode() == studentView.viewEdit()) {
-//                arrStudent[i] = studentView.editStudent();
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-    StudentView sv = new StudentView();
-//    int codeEdit = sv.viewEdit();
 
-//    public boolean update(StudentView studentView){
-//        for (int i = 1; i < count; i++) {
-//            if (arrStudent[i].getCode() == studentView.viewEdit()) {
-//                arrStudent[i] = studentView.editStudent();
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-    public boolean update(int codeEdit) {
+    public boolean update(int inputCode) {
         for (int i = 0; i < count; i++) {
-            if (arrStudent[i].getCode() == codeEdit) {
+            if (arrStudent[i].getCode() == inputCode) {
                 arrStudent[i] = sv.editStudent();
                 return true;
             }

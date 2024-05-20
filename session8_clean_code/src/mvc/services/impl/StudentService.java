@@ -22,7 +22,7 @@ public class StudentService implements IStudentService {
         if (student.getClassRoom().equals("")) {
             return false;
         }
-        return true;
+       return true;
     }
 
     @Override
@@ -41,29 +41,14 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public boolean delete(int codeDelete) {
-        return studentRepositories.delete(codeDelete);
+    public boolean delete(int inputCode) {
+            return studentRepositories.delete(inputCode);
     }
 
     @Override
-    public boolean edit(int codeEdit) {
-        return studentRepositories.update(codeEdit);
+    public boolean edit(int inputCode) {
+            return studentRepositories.update(inputCode);
     }
 
-
-
-//    @Override
-//    public boolean validateCode(int code) {
-//        for (int i = 1; i < count; i++) {
-//            int codeSt = arrStudent[i].getCode();
-//            if (code == codeSt) {
-//                String addaca = "";
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        }
-//        return false;
-//    }
 }
 

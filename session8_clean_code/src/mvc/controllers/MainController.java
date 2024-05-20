@@ -10,12 +10,9 @@ public class MainController {
         StudentView studentView = new StudentView();
         IStudentService studentService = new StudentService();
         int choice;
-        int codeEdit;
-        int codeDelete;
-        Student student = null;
+        int inputCode;
+        Student student;
         boolean result;
-        boolean resultDelete;
-        boolean resultEdit;
         while (true) {
             choice = studentView.view();
             switch (choice) {
@@ -25,14 +22,14 @@ public class MainController {
                     studentView.viewMessageAdd(result);
                     break;
                 case 2:
-                    codeEdit = studentView.viewEdit();
-                    resultEdit = studentService.edit(codeEdit);
-                    studentView.viewMessageEdit(resultEdit);
+                    inputCode = studentView.inputCode();
+                    result = studentService.edit(inputCode);
+                    studentView.viewMessageEdit(result);
                     break;
                 case 3:
-                    codeDelete = studentView.viewDelete();
-                    resultDelete = studentService.delete(codeDelete);
-                    studentView.viewMessageDelete(resultDelete);
+                    inputCode = studentView.inputCode();
+                    result = studentService.delete(inputCode);
+                    studentView.viewMessageDelete(result);
                     break;
                 case 4:
                     Student[] students = studentService.getAll();
