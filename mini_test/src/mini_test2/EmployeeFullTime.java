@@ -1,24 +1,24 @@
 package mini_test2;
 
-public class NhanVienFulltime extends NhanVien{
+public class EmployeeFullTime extends Employee{
     private double bonus;
     private double fine;
-    private double hardSalary;
+    private double fixedSalary;
 
-    public NhanVienFulltime(){
+    public EmployeeFullTime(){
     }
 
-    public NhanVienFulltime(double bonus, double fine, double hardSalary) {
+    public EmployeeFullTime(double bonus, double fine, double fixedSalary) {
         this.bonus = bonus;
         this.fine = fine;
-        this.hardSalary = hardSalary;
+        this.fixedSalary = fixedSalary;
     }
 
-    public NhanVienFulltime(int code, String name, int age, String phoneNumber, String email, double bonus, double fine, double hardSalary) {
+    public EmployeeFullTime(int code, String name, int age, String phoneNumber, String email, double bonus, double fine, double hardSalary) {
         super(code, name, age, phoneNumber, email);
         this.bonus = bonus;
         this.fine = fine;
-        this.hardSalary = hardSalary;
+        this.fixedSalary = hardSalary;
     }
 
     public double getBonus() {
@@ -29,12 +29,12 @@ public class NhanVienFulltime extends NhanVien{
         this.bonus = bonus;
     }
 
-    public double getHardSalary() {
-        return hardSalary;
+    public double getFixedSalary() {
+        return fixedSalary;
     }
 
-    public void setHardSalary(double hardSalary) {
-        this.hardSalary = hardSalary;
+    public void setFixedSalary(double fixedSalary) {
+        this.fixedSalary = fixedSalary;
     }
 
     public double getFine() {
@@ -47,7 +47,7 @@ public class NhanVienFulltime extends NhanVien{
 
     @Override
     public double payroll() {
-        return hardSalary + bonus - fine;
+        return fixedSalary + bonus - fine;
     }
 
     @Override

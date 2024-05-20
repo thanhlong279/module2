@@ -1,16 +1,16 @@
 package mini_test2;
 
-public abstract class NhanVien {
+public abstract class Employee {
     private int code;
     private String name;
     private int age;
     private String phoneNumber;
     private String email;
 
-    public NhanVien(){
+    public Employee(){
     }
 
-    public NhanVien(int code, String name, int age, String phoneNumber, String email) {
+    public Employee(int code, String name, int age, String phoneNumber, String email) {
         this.code = code;
         this.name = name;
         this.age = age;
@@ -62,12 +62,12 @@ public abstract class NhanVien {
 
     @Override
     public String toString() {
-        return "NhanVien{" +
+        return String.format(
                 "code=" + code +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                '}';
+                ',');
     }
 }
