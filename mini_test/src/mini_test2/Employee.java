@@ -65,9 +65,6 @@ public abstract class Employee {
         return String.format(
                 "code=" + code +
                 ", name='" + name + '\'' +
-                ", age=" + age +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
                 ',');
     }
 }
