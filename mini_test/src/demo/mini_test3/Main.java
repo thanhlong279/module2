@@ -1,7 +1,6 @@
 package demo.mini_test3;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,11 +20,11 @@ public class Main {
         Material cf3 = new CrispyFlour("3", "Bột mì3", date3, 3, 7);
         Material cf4 = new CrispyFlour("4", "Bột mì4", date4, 6, 10);
         Material cf5 = new CrispyFlour("5", "Bột mì5", date5, 7, 11);
-        Material m1 = new Meet("6", "Thịt 1", date6, 8, 1);
-        Material m2 = new Meet("7", "Thịt 2", date7, 7, 5);
-        Material m3 = new Meet("8", "Thịt 3", date8, 5, 4);
-        Material m4 = new Meet("9", "Thịt 4", date9, 6, 2);
-        Material m5 = new Meet("10", "Thịt 5", date10, 9, 3);
+        Material m1 = new Meat("6", "Thịt 1", date6, 8, 1);
+        Material m2 = new Meat("7", "Thịt 2", date7, 7, 5);
+        Material m3 = new Meat("8", "Thịt 3", date8, 5, 4);
+        Material m4 = new Meat("9", "Thịt 4", date9, 6, 2);
+        Material m5 = new Meat("10", "Thịt 5", date10, 9, 3);
         Management management = new Management();
 
         management.addMaterial(cf1);
@@ -40,7 +39,7 @@ public class Main {
         management.addMaterial(m5);
 
         management.deleteMaterial(4);
-        management.editMaterial(2, new Meet("6", "Thịt 1", date6, 8, 1));
+        management.editMaterial(2, new Meat("6", "Thịt 1", date6, 8, 1));
 
 
         System.out.println(" sản phẩm trước sắp xếp: ");

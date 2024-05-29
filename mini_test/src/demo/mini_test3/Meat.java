@@ -1,19 +1,18 @@
 package demo.mini_test3;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
-public class Meet extends Material {
+public class Meat extends Material {
     private double weight;
 
-    public Meet() {
+    public Meat() {
     }
 
-    public Meet(double weight) {
+    public Meat(double weight) {
         this.weight = weight;
     }
 
-    public Meet(String id, String name, LocalDate manufacturingDate, int cost, double weight) {
+    public Meat(String id, String name, LocalDate manufacturingDate, int cost, double weight) {
         super(id, name, manufacturingDate, cost);
         this.weight = weight;
     }
