@@ -3,7 +3,7 @@ package mini_test2;
 public abstract class Employee {
     private int code;
     private String name;
-    private int age;
+     private int age;
     private String phoneNumber;
     private String email;
 
@@ -67,4 +67,6 @@ public abstract class Employee {
                 ", name='" + name + '\'' +
                 ',');
     }
+
+
 }

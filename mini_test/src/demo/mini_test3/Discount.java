@@ -1,2 +1,7 @@
-package demo.mini_test3;public interface Discount {
+package demo.mini_test3;
+
+import java.time.LocalDate;
+
+public interface Discount {
+    double getRealMoney(LocalDate date);
 }
