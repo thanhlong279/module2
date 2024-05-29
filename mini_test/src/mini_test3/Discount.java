@@ -1,4 +1,4 @@
-package demo.mini_test3;
+package mini_test3;
 
 import java.time.LocalDate;
 

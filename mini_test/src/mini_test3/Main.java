@@ -1,4 +1,4 @@
-package demo.mini_test3;
+package mini_test3;
 
 import java.time.LocalDate;
 
@@ -38,8 +38,8 @@ public class Main {
         management.addMaterial(m4);
         management.addMaterial(m5);
 
-        management.deleteMaterial("3");
-        management.editMaterial("2", new CrispyFlour("11", "Bột mì3", date3, 3, 7));
+//        management.deleteMaterial("3");
+//        management.editMaterial("2", new CrispyFlour("11", "Bột mì3", date3, 3, 7));
 
 
         System.out.println(" sản phẩm trước sắp xếp: ");
@@ -47,14 +47,8 @@ public class Main {
         System.out.println(" sản phẩm sau sắp xếp");
         management.sortMaterialByPrince();
         management.printMaterial();
-
-
-
-
-        double totalMoneyDiscount = management.totalMoneyDiscount();
-        double totalNotMoneyDiscount = management.totalNotMoneyDiscount();
-        System.out.println(" tổng số tiền sau khi giảm giá: " +totalMoneyDiscount);
-        System.out.println("số chênh lệch triết khấu này hôm nay: " + (totalNotMoneyDiscount-totalMoneyDiscount));
+        management.totalMoneyDiscount();
+        management.totalNotMoneyDiscount();
     }
 
 

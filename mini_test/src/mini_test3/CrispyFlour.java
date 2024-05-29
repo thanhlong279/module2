@@ -1,7 +1,6 @@
-package demo.mini_test3;
+package mini_test3;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class CrispyFlour extends Material {
     private double quantity;
@@ -43,5 +42,13 @@ public class CrispyFlour extends Material {
             realMoney = getAmount() * 0.95;
         }
         return realMoney;
+    }
+
+    @Override
+    public String toString() {
+        return "CrispyFlour{" +
+                super.toString() +
+                " quantity=" + quantity +
+                '}';
     }
 }

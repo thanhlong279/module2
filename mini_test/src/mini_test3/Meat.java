@@ -1,4 +1,4 @@
-package demo.mini_test3;
+package mini_test3;
 
 import java.time.LocalDate;
 
@@ -50,7 +50,7 @@ public class Meat extends Material {
     @Override
     public String toString() {
         return "Meet{" + super.toString()+
-                "weight=" + weight +
+                " weight=" + weight +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package demo.mini_test3;
+package mini_test3;
 
 import java.time.LocalDate;
 
@@ -57,7 +57,7 @@ public abstract class Material implements Discount{
                 ", name='" + name + '\'' +
                 ", manufacturingDate=" + manufacturingDate +
                 ", cost=" + cost +
-                '}';
+                ',';
     }
 
     public abstract double getAmount();
