@@ -88,6 +88,7 @@ public class MaterialController {
                     } else {
                         viewMamagement.displayMaterial(materials);
                     }
+                    break;
                 case 6:
                     managementService.totalMoneyDiscount();
                     break;
@@ -97,6 +98,11 @@ public class MaterialController {
                 case 8:
                     materials = managementService.sortMaterialByPrince();
                     viewMamagement.displayMaterial(materials);
+                    break;
+//                case 9:
+//                    materials = managementService.getAll();
+//                    managementService.writeFile(materials,true);
+//                    break;
                 case 0:
                     return;
             }

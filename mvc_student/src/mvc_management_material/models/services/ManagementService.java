@@ -28,18 +28,18 @@ public class ManagementService implements IManagement{
             if(material.getId().equals(m.getId())){
                 return false;
             }
-            if(m instanceof CrispyFlour){
-                CrispyFlour crispyFlour = (CrispyFlour) material;
-                if(crispyFlour.getQuantity() <= 0){
-                    return false;
-                }
-            }
-            if(m instanceof Meat){
-                Meat meat = (Meat) material;
-                if(meat.getWeight() <= 0){
-                    return false;
-                }
-            }
+//            if(m instanceof CrispyFlour){
+//                CrispyFlour crispyFlour = (CrispyFlour) material;
+//                if(crispyFlour.getQuantity() <= 0){
+//                    return false;
+//                }
+//            }
+//            if(m instanceof Meat){
+//                Meat meat = (Meat) material;
+//                if(meat.getWeight() <= 0){
+//                    return false;
+//                }
+//            }
         }
         return true;
     }
@@ -105,10 +105,7 @@ public class ManagementService implements IManagement{
             });
             return materials;
         }
-
-
-
-
-
-
+//        public void writeFile(List<Material> materials, boolean append) {
+//        managementRipository.writeFile(materials, append);
+//        }
 }

@@ -13,6 +13,7 @@ public class MainController {
         IStudentServices studentServices = new StudentSevices();
         Student student;
         String name;
+        List<Student> students;
         boolean result;
         int code;
         while (true) {
@@ -36,10 +37,11 @@ public class MainController {
                     if (student == null) {
                         viewstudent.displayMessageNotFound();
                     } else {
-                        boolean isConfirm = viewstudent.confirmEdit(student);
-                        if (isConfirm) {
-                            student = viewstudent.viewAdd();
-                            studentServices.editStudent(student);
+                        result = viewstudent.confirmEdit(student);
+                        if (result) {
+                            Student updateStudent = viewstudent.viewAdd();
+//                            updateStudent.setId(student.getId());
+                            studentServices.editStudent(updateStudent);
                             viewstudent.viewMessage(true);
                         }
                     }
@@ -58,18 +60,10 @@ public class MainController {
                     }
                     break;
                 case 4:
-                    List<Student> students = studentServices.getAll();
+                    students = studentServices.getAll();
                     viewstudent.displayAll(students);
                     break;
                 case 5:
-//                    String name = viewstudent.inputName();
-//                    result = ((StudentSevices) studentServices).searchByName(name);
-//                    if(result) {
-//                        students = studentServices.listSearchByName(name);
-//                        viewstudent.displayAll(students);
-//                    }else{
-//                        viewstudent.displayMessageNotFound();
-//                    }
                     name = viewstudent.inputName();
                     students = studentServices.searchByName(name);
                     if (students.isEmpty()) {

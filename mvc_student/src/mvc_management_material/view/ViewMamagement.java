@@ -20,6 +20,7 @@ public class ViewMamagement {
         System.out.println("6. tính tổng tiền của vật liệu");
         System.out.println("7. Tính chênh lệch giữa triết khấu và ko triết khấu");
         System.out.println("8. sắp xếp vật liệu theo giá");
+        System.out.println("9. lưu file");
         System.out.println("0. Edit");
         Scanner sc = new Scanner(System.in);
         int choice = -1;
@@ -58,7 +59,7 @@ public class ViewMamagement {
             try {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("id: ");
-                String id = sc.nextLine();
+                String id = "CF" + sc.nextLine();
                 System.out.println("name: ");
                 String name = sc.nextLine();
                 System.out.println("ManufacturingDate(day): ");
@@ -88,7 +89,7 @@ public class ViewMamagement {
             try {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("id: ");
-                String id = sc.nextLine();
+                String id = "M" + sc.nextLine();
                 System.out.println("name: ");
                 String name = sc.nextLine();
                 System.out.println("ManufacturingDate(day): ");

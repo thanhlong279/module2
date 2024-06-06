@@ -30,7 +30,7 @@ public class ViewStudent {
     public Student viewAdd() throws NumberFormatException{
         Scanner sc = new Scanner(System.in);
         System.out.println("input code");
-        int code = Integer.parseInt(sc.nextLine());
+        int code = Integer.parseInt("1"+ sc.nextLine());
         if(code < 0){
             throw new NumberFormatException("code ko phai la so âm");
         }

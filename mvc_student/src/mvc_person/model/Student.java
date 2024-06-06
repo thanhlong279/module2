@@ -3,7 +3,7 @@ package mvc_person.model;
 public class Student extends Person{
     private String classroom;
 
-    public Student(){
+    public Student(Student student){
     }
 
 
