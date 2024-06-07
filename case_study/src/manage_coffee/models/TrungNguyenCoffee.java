@@ -4,23 +4,13 @@ import java.time.LocalDate;
 
 public class TrungNguyenCoffee extends Coffee {
     private double weight;
-    private double inventory;
 
     public TrungNguyenCoffee() {
     }
 
-    public TrungNguyenCoffee(String code, String name, int expiry, int duration, LocalDate manufacturingDate, double price, double discount, double inventory, double weight) {
+    public TrungNguyenCoffee(String code, String name, int expiry, int duration, LocalDate manufacturingDate, double price, double discount, double weight) {
         super(code, name, expiry, duration, manufacturingDate, price, discount);
-        this.inventory = inventory;
         this.weight = weight;
-    }
-
-    public double getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(double inventory) {
-        this.inventory = inventory;
     }
 
     public double getWeight() {
@@ -33,7 +23,7 @@ public class TrungNguyenCoffee extends Coffee {
 
     @Override
     public LocalDate getExpiryDate() {
-        return super.getManufacturingDate().plusMonths(super.getDuration());
+        return super.getManufacturingDate().plusMonths(super.getExpiry());
     }
 
     @Override
@@ -45,5 +35,10 @@ public class TrungNguyenCoffee extends Coffee {
             readMoney = super.getPrice() * weight;
         }
         return readMoney;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " weight: " + weight;
     }
 }

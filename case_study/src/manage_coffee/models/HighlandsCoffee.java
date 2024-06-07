@@ -2,33 +2,32 @@ package manage_coffee.models;
 
 import java.time.LocalDate;
 
-public class HighlandsCoffee extends Coffee{
-    private int cupCoffee;
-    private int inventory;
+public class HighlandsCoffee extends FinishedCoffee {
+//    private int quantity;
+//
+//    public HighlandsCoffee(){
+//    }
+//
+//    public HighlandsCoffee(String code, String name, int expiry, int duration, LocalDate manufacturingDate, double price, double discount, int canCoffee) {
+//        super(code, name, expiry, duration, manufacturingDate, price, discount);
+//        this.quantity = canCoffee;
+//    }
+//
+//    public int getQuantity() {
+//        return quantity;
+//    }
+//
+//    public void setQuantity(int quantity) {
+//        this.quantity = quantity;
+//    }
 
-    public HighlandsCoffee(){
+    public HighlandsCoffee() {
     }
 
-    public HighlandsCoffee(String code, String name, int expiry, int duration, LocalDate manufacturingDate, double price, double discount, int cupCoffee, int inventory) {
-        super(code, name, expiry, duration, manufacturingDate, price, discount);
-        this.cupCoffee = cupCoffee;
-        this.inventory = inventory;
-    }
+    ;
 
-    public int getCupCoffee() {
-        return cupCoffee;
-    }
-
-    public void setCupCoffee(int cupCoffee) {
-        this.cupCoffee = cupCoffee;
-    }
-
-    public int getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(int inventory) {
-        this.inventory = inventory;
+    public HighlandsCoffee(String code, String name, int expiry, int duration, LocalDate manufacturingDate, double price, double discount, int quantity) {
+        super(code, name, expiry, duration, manufacturingDate, price, discount, quantity);
     }
 
     @Override
@@ -39,10 +38,10 @@ public class HighlandsCoffee extends Coffee{
     @Override
     public double getReadMoney() {
         double readMoney;
-        if(LocalDate.now().isAfter(getExpiryDate().minusMonths(super.getDuration())) || LocalDate.now().isEqual(getExpiryDate().minusMonths(super.getDuration()))) {
-            readMoney = super.getPrice() * cupCoffee * (1 - (super.getDiscount() /100));
-        }else{
-            readMoney = super.getPrice() * cupCoffee;
+        if (LocalDate.now().isAfter(getExpiryDate().minusMonths(super.getDuration())) || LocalDate.now().isEqual(getExpiryDate().minusMonths(super.getDuration()))) {
+            readMoney = super.getPrice() * super.getQuantity() * (1 - (super.getDiscount() / 100));
+        } else {
+            readMoney = super.getPrice() * super.getQuantity();
         }
         return readMoney;
     }

@@ -11,7 +11,7 @@ public abstract class Coffee {
     private double discount;
     private int duration;
 
-    public Coffee(String code, String name, int expiry,int duration, LocalDate manufacturingDate, double price, double discount) {
+    public Coffee(String code, String name, int expiry, int duration, LocalDate manufacturingDate, double price, double discount) {
         this.code = code;
         this.expiry = expiry;
         this.manufacturingDate = manufacturingDate;
@@ -21,7 +21,7 @@ public abstract class Coffee {
         this.duration = duration;
     }
 
-    public Coffee(){
+    public Coffee() {
     }
 
     public void setCode(String code) {
@@ -80,6 +80,20 @@ public abstract class Coffee {
         this.duration = duration;
     }
 
-    public abstract  LocalDate getExpiryDate();
+    @Override
+    public String toString() {
+        return
+                "code='" + code + '\'' +
+                        ", name='" + name + '\'' +
+                        ", date" + manufacturingDate +
+                        ", price=" + price +
+                        ", expiry=" + expiry +
+                        ", discount=" + discount +
+                        ", duration=" + duration +
+                        ',';
+    }
+
+    public abstract LocalDate getExpiryDate();
+
     public abstract double getReadMoney();
 }
