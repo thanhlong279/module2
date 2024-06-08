@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositoryManage {
-    private static String FILE_COFFEE = "D:\\code_gym\\module_2_java\\session\\case_study\\src\\manage_coffee.csv";
+    private static String FILE_COFFEE = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\manage_coffee.csv";
     //    private static List<Coffee> coffeeList = new ArrayList<>();
     private static RepositoryManage instance;
 

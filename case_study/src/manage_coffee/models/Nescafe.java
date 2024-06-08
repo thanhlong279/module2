@@ -38,9 +38,9 @@ public class Nescafe extends FinishedCoffee {
     public double getReadMoney() {
         double readMoney;
         if (LocalDate.now().isAfter(getExpiryDate().minusMonths(super.getDuration())) || LocalDate.now().isEqual(getExpiryDate().minusMonths(super.getDuration()))) {
-            readMoney = super.getPrice() * super.getQuantity() * (1 - super.getDiscount() / 100);
+            readMoney = super.getPrice()  * (1 - super.getDiscount() / 100);
         } else {
-            readMoney = super.getPrice() * super.getQuantity();
+            readMoney = super.getPrice() ;
         }
         return readMoney;
     }

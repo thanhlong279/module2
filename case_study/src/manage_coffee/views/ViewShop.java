@@ -1,10 +1,8 @@
 package manage_coffee.views;
 
-import manage_coffee.models.Coffee;
+import manage_coffee.models.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ViewShop {
     private static ViewShop instance;
@@ -41,6 +39,7 @@ public class ViewShop {
         System.out.println("1. thêm sản phẩm vào giỏ hàng");
         System.out.println("2. xóa sản phẩm khỏi giỏ hàng");
         System.out.println("3. hiển thị danh sách giỏ hàng");
+        System.out.println("4. thanh toán giỏ hàng");
         System.out.println("0. kết thúc trương trình");
         int choice = -1;
         do {
@@ -50,7 +49,7 @@ public class ViewShop {
             } catch (NumberFormatException e) {
                 System.err.println("nhập số nguyên từ 0-2 để trọn chức năng");
             }
-        } while (choice < 0 || choice > 3);
+        } while (choice < 0 || choice > 4);
         return choice;
     }
 
@@ -111,5 +110,46 @@ public class ViewShop {
         } else {
             return false;
         }
+    }
+
+    public List<CustomerCart> getAmount(List<Coffee> coffees) {
+        Scanner sc = new Scanner(System.in);
+        String code = "";
+        double quantity = 0;
+        List<CustomerCart> list = new ArrayList<>();
+        for (Coffee coffee : coffees) {
+            code = coffee.getCode();
+            System.out.println(coffee.toString());
+            System.out.println("Nhập số lượng bạn mua: ");
+            quantity = Double.parseDouble(sc.nextLine());
+            CustomerCart customerCart = new CustomerCart(code, quantity);
+            list.add(customerCart);
+        }
+        return list;
+    }
+
+    public void viewMasageValidateCart() {
+        System.out.println("cửa hàng ko đủ số lượng bạn muốn mua, mời bạn nhập lại");
+    }
+
+    public boolean confirmGetAmount(List<CustomerCart> cartList) {
+        for (CustomerCart customerCart : cartList) {
+            System.out.println(customerCart.toString());
+        }
+        System.out.println("bạn có muốn mua thanh toán sản phẩm trong giỏ hàng? bấm 'y' để thanh toán");
+        Scanner sc = new Scanner(System.in);
+        String confirm = sc.nextLine();
+        if (confirm.equalsIgnoreCase("y")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void getTotalMoney(List<CustomerCart> list, double totalMoney) {
+        for (CustomerCart customerCart : list) {
+            System.out.println(customerCart.toString());
+        }
+        System.out.println("tổng số tiền cho đơn hàng trên: " + totalMoney);
     }
 }

@@ -1,8 +1,7 @@
 package manage_coffee.models.services.impl;
 
-import manage_coffee.models.Coffee;
+import manage_coffee.models.*;
 import manage_coffee.models.repositories.RepositoryClient;
-import manage_coffee.models.repositories.RepositoryManage;
 import manage_coffee.models.services.shop.IShopService;
 
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class ShopService implements IShopService {
 
     @Override
     public List<Coffee> getAllCart() {
-        return repositoryClient.getAll();
+        return repositoryClient.getAllCart();
     }
 
     @Override
@@ -58,20 +57,68 @@ public class ShopService implements IShopService {
         return result;
     }
 
-//    public List<Coffee> addCart(List<String> list) {
-//        List<Coffee> coffees = getAll();
-//        List<Coffee> result = new ArrayList<>();
-//        int coffeesSize = coffees.size();
-//        int listString = list.size();
-//        for (int i = 0; i <  coffeesSize; i++) {
-//            for (int j = 0; j < listString; j++) {
-//                if(coffees.get(i).getCode().equalsIgnoreCase(list.get(j))){
-//                    result.add(coffees.get(i));
+    @Override
+    public boolean validateQuantityCart(List<CustomerCart> cartList) {
+        List<Coffee> listCart = getAllCart();
+        for (CustomerCart customerCart : cartList) {
+            boolean isValid = true;
+            for (Coffee coffee : listCart) {
+                if (coffee instanceof HighlandsCoffee && coffee.getCode().equals(customerCart.getCode())) {
+                    if (((HighlandsCoffee) coffee).getQuantity() >= customerCart.getQuantity()) {
+                        isValid = false;
+                    }
+                } if (coffee instanceof Nescafe && coffee.getCode().equals(customerCart.getCode())) {
+                    if (((Nescafe) coffee).getQuantity() >= customerCart.getQuantity()) {
+                        isValid = false;
+                    }
+                } if (coffee instanceof TrungNguyenCoffee && coffee.getCode().equals(customerCart.getCode())) {
+                    if (((TrungNguyenCoffee) coffee).getWeight() >= customerCart.getQuantity()) {
+                        isValid = false;
+                    }
+                }
+            }
+            if (!isValid) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public double getTotalMoney(List<CustomerCart> cartList) {
+        return repositoryClient.getTotalMoney(cartList);
+    }
+
+    @Override
+    public void updateListProduct(List<CustomerCart> cartList) {
+        repositoryClient.updateFileProduct(cartList);
+    }
+
+    @Override
+    public void updateListCart() {
+        repositoryClient.updateFileCart();
+    }
+
+
+//    public double getTotalMoney(List<CustomerCart> cartList) {
+//        double totalHighlandsCoffee = 0;
+//        double totalTrungNguyenCoffee = 0;
+//        double totalNescafe = 0;
+//        List<Coffee> listCart = getAllCart();
+//        for (CustomerCart customerCart : cartList) {
+//            for (Coffee coffee : listCart) {
+//                if (coffee instanceof HighlandsCoffee && coffee.getCode().equals(customerCart.getCode())) {
+//                    totalHighlandsCoffee += coffee.getReadMoney() * customerCart.getQuantity();
+//                } if (coffee instanceof Nescafe && coffee.getCode().equals(customerCart.getCode())) {
+//                    totalNescafe += coffee.getReadMoney() * customerCart.getQuantity();
+//                } if (coffee instanceof TrungNguyenCoffee && coffee.getCode().equals(customerCart.getCode())) {
+//                    totalTrungNguyenCoffee += coffee.getReadMoney() * customerCart.getQuantity();
 //                }
 //            }
 //        }
-//        return result;
+//        return totalNescafe + totalHighlandsCoffee + totalTrungNguyenCoffee;
 //    }
+
 }
 
 

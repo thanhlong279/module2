@@ -1,19 +1,16 @@
 package manage_coffee.models.repositories;
 
-import manage_coffee.models.Coffee;
-import manage_coffee.models.HighlandsCoffee;
-import manage_coffee.models.Nescafe;
-import manage_coffee.models.TrungNguyenCoffee;
+import manage_coffee.models.*;
 
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class RepositoryClient implements Serializable {
-    //    private static List<Coffee> listCart = new ArrayList<>();
-    private static String FILE_CART = "D:\\code_gym\\module_2_java\\session\\case_study\\src\\cart_client.csv";
-    private static String FILE_COFFEE = "D:\\code_gym\\module_2_java\\session\\case_study\\src\\manage_coffee.csv";
+    private static String FILE_CART = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\cart_client.csv";
+    private static String FILE_COFFEE = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\manage_coffee.csv";
     private static RepositoryClient instance;
 
     private RepositoryClient() {
@@ -31,11 +28,11 @@ public class RepositoryClient implements Serializable {
     public void addCart(Coffee coffee) {
         List<Coffee> coffeeList = readFile(FILE_CART);
         coffeeList.add(coffee);
-        writeFile(coffeeList, false);
+        writeFile(coffeeList, false, FILE_CART);
     }
 
-    public void writeFile(List<Coffee> coffeeList, boolean apprnd) {
-        File file = new File(FILE_CART);
+    public void writeFile(List<Coffee> coffeeList, boolean apprnd, String nameFile) {
+        File file = new File(nameFile);
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
         try {
@@ -122,7 +119,7 @@ public class RepositoryClient implements Serializable {
         return null;
     }
 
-    public List<Coffee> getAll() {
+    public List<Coffee> getAllCart() {
         return new ArrayList<>(readFile(FILE_CART));
     }
 
@@ -142,9 +139,8 @@ public class RepositoryClient implements Serializable {
                 }
             }
         }
-        writeFile(result, true);
+        writeFile(result, true, FILE_CART);
         return result;
-
     }
 
     public void deleteProductInCart(List<String> list) {
@@ -159,6 +155,62 @@ public class RepositoryClient implements Serializable {
             }
         }
         coffees.removeAll(result);
-        writeFile(coffees, false);
+        writeFile(coffees, false, FILE_CART);
+    }
+
+    public double getTotalMoney(List<CustomerCart> cartList) {
+        double totalHighlandsCoffee = 0;
+        double totalTrungNguyenCoffee = 0;
+        double totalNescafe = 0;
+        List<Coffee> listCart = readFile(FILE_CART);
+        for (CustomerCart customerCart : cartList) {
+            for (Coffee coffee : listCart) {
+                if (coffee instanceof HighlandsCoffee && coffee.getCode().equals(customerCart.getCode())) {
+                    totalHighlandsCoffee += coffee.getReadMoney() * customerCart.getQuantity();
+                }
+                if (coffee instanceof Nescafe && coffee.getCode().equals(customerCart.getCode())) {
+                    totalNescafe += coffee.getReadMoney() * customerCart.getQuantity();
+                }
+                if (coffee instanceof TrungNguyenCoffee && coffee.getCode().equals(customerCart.getCode())) {
+                    totalTrungNguyenCoffee += coffee.getReadMoney() * customerCart.getQuantity();
+                }
+            }
+        }
+        return totalNescafe + totalHighlandsCoffee + totalTrungNguyenCoffee;
+    }
+
+    public void updateFileProduct(List<CustomerCart> cartList) {
+        List<Coffee> coffees = readFile(FILE_COFFEE);
+        for (Coffee coffee : coffees) {
+            for (CustomerCart customerCart : cartList) {
+                if (coffee instanceof HighlandsCoffee && coffee.getCode().equals(customerCart.getCode())) {
+                    ((HighlandsCoffee) coffee).setQuantity((int) (((HighlandsCoffee) coffee).getQuantity() - customerCart.getQuantity()));
+                    if (((HighlandsCoffee) coffee).getQuantity() == 0) {
+                        coffees.remove(coffee);
+                    }
+                }
+                if (coffee instanceof Nescafe && coffee.getCode().equals(customerCart.getCode())) {
+                    ((Nescafe) coffee).setQuantity((int) (((Nescafe) coffee).getQuantity() - customerCart.getQuantity()));
+                    if (((Nescafe) coffee).getQuantity() == 0) {
+                        coffees.remove(coffee);
+                    }
+                }
+                if (coffee instanceof TrungNguyenCoffee && coffee.getCode().equals(customerCart.getCode())) {
+                    ((TrungNguyenCoffee) coffee).setWeight(((TrungNguyenCoffee) coffee).getWeight() - customerCart.getQuantity());
+                    if (((TrungNguyenCoffee) coffee).getWeight() == 0) {
+                        coffees.remove(coffee);
+                    }
+                }
+            }
+        }
+        writeFile(coffees, false, FILE_COFFEE);
+    }
+
+    public void updateFileCart() {
+        List<Coffee> newCartList = readFile(FILE_CART);
+        for (Coffee coffee : newCartList) {
+            newCartList.remove(coffee);
+        }
+        writeFile(newCartList, false, FILE_CART);
     }
 }

@@ -1,11 +1,13 @@
 package manage_coffee.controllers;
 
 import manage_coffee.models.Coffee;
+import manage_coffee.models.CustomerCart;
 import manage_coffee.models.services.impl.ShopService;
 import manage_coffee.models.services.shop.IShopService;
 import manage_coffee.views.ViewShop;
 
 import java.util.List;
+import java.util.Map;
 
 public class ControllerShop {
     public static void main(String[] args) {
@@ -13,8 +15,11 @@ public class ControllerShop {
         IShopService shopService = ShopService.getInstance();
         List<Coffee> coffees;
         List<String> list;
+        List<CustomerCart> cartList;
         boolean result;
         int choice;
+        double totalMoney = 0;
+        boolean isconfirm;
         coffees = shopService.getAllProduct();
         viewShop.viewProduct(coffees);
 
@@ -49,6 +54,26 @@ public class ControllerShop {
                     }
                 case 3:
                     viewShop.viewCart(shopService.getAllCart());
+                    break;
+                case 4:
+                    coffees = shopService.getAllCart();
+                    cartList = viewShop.getAmount(coffees);
+                    result = shopService.validateQuantityCart(cartList);
+                    if (result) {
+                        viewShop.viewMasageValidateCart();
+                        cartList = viewShop.getAmount(coffees);
+                    } else {
+                        isconfirm = viewShop.confirmGetAmount(cartList);
+                        if (isconfirm) {
+                            totalMoney = shopService.getTotalMoney(cartList);
+                            shopService.updateListProduct(cartList);
+                            shopService.updateListCart();
+                            viewShop.getTotalMoney(cartList, totalMoney);
+                        }
+                    }
+                    break;
+                case 0:
+                    return;
             }
         }
     }
