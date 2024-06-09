@@ -27,7 +27,7 @@ public interface IShopService {
 
     void updateListCart();
 
-    void updateSaleDate(List<CustomerCart> customerCart);
+    void updateSaleData(List<CustomerCart> customerCart);
 
 }
 

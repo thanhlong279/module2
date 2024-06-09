@@ -10,4 +10,15 @@ public interface IService<T extends Coffee> {
     boolean validateCoffee(T t);
 
     List<Coffee> getAll();
+
+    List<T> searchByName(String name);
+
+    T searchByCode(String name);
+
+    void deleteProduct(String name);
+
+    void editProduct(T t);
+
+    void readFileSale();
+
 }

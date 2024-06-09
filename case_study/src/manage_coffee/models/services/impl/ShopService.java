@@ -102,8 +102,8 @@ public class ShopService implements IShopService {
     }
 
     @Override
-    public void updateSaleDate(List<CustomerCart> customerCart) {
-        repositoryClient.updateSaleDate(customerCart);
+    public void updateSaleData(List<CustomerCart> customerCart) {
+        repositoryClient.updateSaleData(customerCart);
     }
 }
 

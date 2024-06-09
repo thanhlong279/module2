@@ -81,7 +81,7 @@ public class ShopView {
         return list;
     }
 
-    public void viewMasageCart(boolean result) {
+    public void viewMassageCart(boolean result) {
         if (result) {
             System.out.println("thao tác thành công");
         } else {
@@ -122,7 +122,7 @@ public class ShopView {
         return list;
     }
 
-    public void viewMasageValidateCart() {
+    public void viewMassageValidateCart() {
         System.out.println("cửa hàng ko đủ số lượng bạn muốn mua, mời bạn nhập lại");
     }
 

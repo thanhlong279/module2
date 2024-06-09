@@ -1,6 +1,9 @@
 package manage_coffee.controllers;
 
 import manage_coffee.models.Coffee;
+import manage_coffee.models.HighlandsCoffee;
+import manage_coffee.models.Nescafe;
+import manage_coffee.models.TrungNguyenCoffee;
 import manage_coffee.models.services.IService;
 import manage_coffee.models.services.impl.ManageService;
 import manage_coffee.views.ManageView;
@@ -16,6 +19,10 @@ public class ManageController {
         Coffee product;
         boolean result;
         List<Coffee> coffeeList;
+        String name;
+        boolean isConfirm;
+        String code;
+        Coffee updateProduct;
         while (true) {
             choice = manageView.viewMenu();
             switch (choice) {
@@ -46,10 +53,58 @@ public class ManageController {
                     manageView.display(coffeeList);
                     break;
                 case 3:
+                    name = manageView.inputSearch();
+                    coffeeList = manageService.searchByName(name);
+                    if (coffeeList.isEmpty()) {
+                        manageView.viewMassageSearch();
+                    } else {
+                        manageView.display(coffeeList);
+                    }
                     break;
                 case 4:
+                    code = manageView.inputSearch();
+                    product = manageService.searchByCode(code);
+                    if (product == null) {
+                        manageView.viewMassageSearch();
+                    } else {
+                        isConfirm = manageView.confirm(product);
+                        if (isConfirm) {
+                            manageService.deleteProduct(code);
+                            manageView.viewMassage(true);
+                        }
+                    }
                     break;
                 case 5:
+                    code = manageView.inputSearch();
+                    product = manageService.searchByCode(code);
+                    if (product == null) {
+                        manageView.viewMassageSearch();
+                    } else {
+                        isConfirm = manageView.confirm(product);
+                        if (isConfirm) {
+                            if (product instanceof HighlandsCoffee) {
+                                updateProduct = manageView.addHighlandsCoffee();
+                                updateProduct.setCode(product.getCode());
+                                manageService.editProduct(updateProduct);
+                                manageView.viewMassage(true);
+                            }
+                            if (product instanceof Nescafe) {
+                                updateProduct = manageView.addNetcafe();
+                                updateProduct.setCode(product.getCode());
+                                manageService.editProduct(updateProduct);
+                                manageView.viewMassage(true);
+                            }
+                            if (product instanceof TrungNguyenCoffee) {
+                                updateProduct = manageView.addTrungNguyenCoffee();
+                                updateProduct.setCode(product.getCode());
+                                manageService.editProduct(updateProduct);
+                                manageView.viewMassage(true);
+                            }
+                        }
+                    }
+                    break;
+                case 6:
+                    manageService.readFileSale();
                     break;
                 case 0:
                     return;

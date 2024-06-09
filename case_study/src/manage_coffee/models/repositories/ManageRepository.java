@@ -12,6 +12,7 @@ import java.util.List;
 
 public class ManageRepository {
     private static String FILE_COFFEE = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\manage_coffee.csv";
+    private static String FILE_SALES = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\sale_data.csv";
     //    private static List<Coffee> coffeeList = new ArrayList<>();
     private static ManageRepository instance;
 
@@ -124,5 +125,57 @@ public class ManageRepository {
         }
         return null;
     }
+
+    public void deleteCoffee(String code) {
+        List<Coffee> list = getAll();
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            if (list.get(i).getCode().equals(code)) {
+                list.remove(i);
+                writeFile(list, false, FILE_COFFEE);
+                break;
+            }
+        }
+
+    }
+
+    public void editProduct(Coffee product) {
+        List<Coffee> list = getAll();
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            if (list.get(i).getCode().equals(product.getCode())) {
+                list.set(i, product);
+                writeFile(list, false, FILE_COFFEE);
+                break;
+            }
+        }
+    }
+
+    public void readFileSale() {
+        File file = new File(FILE_SALES);
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
+        try {
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("ko tìm thấy file");
+        } catch (Exception e) {
+            System.out.println("lỗi đọc dữ liệu");
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    System.out.println("lỗi đóng file");
+                }
+            }
+        }
+    }
+
 
 }

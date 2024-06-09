@@ -4,6 +4,7 @@ import manage_coffee.models.*;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -213,9 +214,9 @@ public class ClientRepository implements Serializable {
         writeFile(newCartList, false, FILE_CART);
     }
 
-    public void updateSaleDate(List<CustomerCart> cartList) {
+    public void updateSaleData(List<CustomerCart> cartList) {
         double totalMoney = getTotalMoney(cartList);
-        String saleInfo = "Date: " + LocalDate.now() + ", Total Money: " + totalMoney+ " VNĐ";
+        String saleInfo = "Date: " +LocalDate.now()+" "+LocalTime.now().withNano(0) + " Total Money: " + totalMoney+ " VNĐ";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_SALES, true))) {
             writer.write(saleInfo);
             writer.newLine();

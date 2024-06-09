@@ -33,6 +33,8 @@ public class ManageView {
         System.out.println("3. tìm kiếm sản phẩm");
         System.out.println("4. xóa sản phẩm");
         System.out.println("5. sửa thông tin sản phẩm");
+        System.out.println("6. In danh sách bán hàng");
+        System.out.println("7. lấy tổng tiền bán hàng");
         System.out.println("0. kết thúc trương trình");
         int choice = -1;
         do {
@@ -42,7 +44,7 @@ public class ManageView {
             } catch (NumberFormatException e) {
                 System.err.println("nhập số nguyên từ 0-5 để trọn chức năng");
             }
-        } while (choice < 0 || choice > 5);
+        } while (choice < 0 || choice > 7);
         return choice;
     }
 
@@ -65,111 +67,216 @@ public class ManageView {
     }
 
     public Coffee addHighlandsCoffee() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("nhập code: ");
+        String code = "HLC" + sc.nextLine();
+        System.out.println("Nhập tên coffee: ");
+        String name = sc.nextLine();
+        LocalDate manufacturingDate = null;
         while (true) {
             try {
-                Scanner sc = new Scanner(System.in);
-                System.out.println("nhập code: ");
-                String code = "HLC" + sc.nextLine();
-                System.out.println("Nhập tên coffee: ");
-                String name = sc.nextLine();
                 System.out.println("Ngày: ");
                 int day = Integer.parseInt(sc.nextLine());
                 System.out.println("Month: ");
                 int month = Integer.parseInt(sc.nextLine());
                 System.out.println("Year: ");
                 int year = Integer.parseInt(sc.nextLine());
-                LocalDate manufacturingDate = LocalDate.of(year, month, day);
-                System.out.println("Giá bán: ");
-                double price = Double.parseDouble(sc.nextLine());
-                System.out.println("Hạn sử dụng: ");
-                int expiry = Integer.parseInt(sc.nextLine());
-                System.out.println("Giảm giá: ");
-                double discount = Double.parseDouble(sc.nextLine());
-                System.out.println("Thời gian giảm giá: ");
-                int duration = Integer.parseInt(sc.nextLine());
-                System.out.println("số lượng: ");
-                int quantity = Integer.parseInt(sc.nextLine());
-                return new HighlandsCoffee(code, name, expiry, duration, manufacturingDate, price, discount, quantity);
+                manufacturingDate = LocalDate.of(year, month, day);
+                break;
             } catch (NumberFormatException e) {
-                System.out.println(" nhập giá trị dương cho các giá trị");
+                System.out.println("mời bạn nhập số nguyên dương cho date");
             } catch (DateTimeParseException e) {
-                System.out.println("ngày ko hợp lệ, vui lòng nhập lại");
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("date ko hợp lệ");
             }
         }
+        double price = 0;
+        while (price <= 0 || price >= 100000000) {
+            try {
+                System.out.println("Giá bán: ");
+                price = Double.parseDouble(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        int expiry = 0;
+        while (expiry <= 0 || expiry >= 100000000) {
+            try {
+                System.out.println("Hạn sử dụng(ngày): ");
+                expiry = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        double discount = 0;
+        while (discount <= 0 || discount >= 100) {
+            try {
+                System.out.println("Giảm giá(%): ");
+                discount = Double.parseDouble(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        int duration = 0;
+        while (duration <= 0 || duration >= expiry) {
+            try {
+                System.out.println("Thời gian giảm giá(ngày): ");
+                duration = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        int quantity = 0;
+        while (quantity <= 0 || quantity >= 100000000) {
+            try {
+                System.out.println("số lượng(ly): ");
+                quantity = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        return new HighlandsCoffee(code, name, expiry, duration, manufacturingDate, price, discount, quantity);
     }
 
     public Coffee addNetcafe() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("nhập code: ");
+        String code = "NCC" + sc.nextLine();
+        System.out.println("Nhập tên coffee: ");
+        String name = sc.nextLine();
+        LocalDate manufacturingDate = null;
         while (true) {
             try {
-                Scanner sc = new Scanner(System.in);
-                System.out.println("nhập code: ");
-                String code = "NCC" + sc.nextLine();
-                System.out.println("Nhập tên coffee: ");
-                String name = sc.nextLine();
                 System.out.println("Ngày: ");
                 int day = Integer.parseInt(sc.nextLine());
                 System.out.println("Month: ");
                 int month = Integer.parseInt(sc.nextLine());
                 System.out.println("Year: ");
                 int year = Integer.parseInt(sc.nextLine());
-                LocalDate manufacturingDate = LocalDate.of(year, month, day);
-                System.out.println("Giá bán: ");
-                double price = Double.parseDouble(sc.nextLine());
-                System.out.println("Hạn sử dụng: ");
-                int expiry = Integer.parseInt(sc.nextLine());
-                System.out.println("Giảm giá: ");
-                double discount = Double.parseDouble(sc.nextLine());
-                System.out.println("Thời gian giảm giá: ");
-                int duration = Integer.parseInt(sc.nextLine());
-                System.out.println("số lượng: ");
-                int quantity = Integer.parseInt(sc.nextLine());
-                return new Nescafe(code, name, expiry, duration, manufacturingDate, price, discount, quantity);
+                manufacturingDate = LocalDate.of(year, month, day);
+                break;
             } catch (NumberFormatException e) {
-                System.out.println(" nhập giá trị dương cho các giá trị");
+                System.out.println("mời bạn nhập số nguyên dương cho date");
             } catch (DateTimeParseException e) {
-                System.out.println("ngày ko hợp lệ, vui lòng nhập lại");
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("date ko hợp lệ");
             }
         }
+        double price = 0;
+        while (price <= 0 || price >= 100000000) {
+            try {
+                System.out.println("Giá bán: ");
+                price = Double.parseDouble(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        int expiry = 0;
+        while (expiry <= 0 || expiry >= 100000000) {
+            try {
+                System.out.println("Hạn sử dụng(tháng): ");
+                expiry = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        double discount = 0;
+        while (discount <= 0 || discount >= 100) {
+            try {
+                System.out.println("Giảm giá(%): ");
+                discount = Double.parseDouble(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        int duration = 0;
+        while (duration <= 0 || duration >= expiry) {
+            try {
+                System.out.println("Thời gian giảm giá(tháng): ");
+                duration = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        int quantity = 0;
+        while (quantity <= 0 || quantity >= 100000000) {
+            try {
+                System.out.println("số lượng(hộp): ");
+                quantity = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        return new Nescafe(code, name, expiry, duration, manufacturingDate, price, discount, quantity);
     }
 
     public Coffee addTrungNguyenCoffee() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("nhập code: ");
+        String code = "TNC" + sc.nextLine();
+        System.out.println("Nhập tên coffee: ");
+        String name = sc.nextLine();
+        LocalDate manufacturingDate = null;
         while (true) {
             try {
-                Scanner sc = new Scanner(System.in);
-                System.out.println("nhập code: ");
-                String code = "TNC" + sc.nextLine();
-                System.out.println("Nhập tên coffee: ");
-                String name = sc.nextLine();
                 System.out.println("Ngày: ");
                 int day = Integer.parseInt(sc.nextLine());
                 System.out.println("Month: ");
                 int month = Integer.parseInt(sc.nextLine());
                 System.out.println("Year: ");
                 int year = Integer.parseInt(sc.nextLine());
-                LocalDate manufacturingDate = LocalDate.of(year, month, day);
-                System.out.println("Giá bán: ");
-                double price = Double.parseDouble(sc.nextLine());
-                System.out.println("Hạn sử dụng: ");
-                int expiry = Integer.parseInt(sc.nextLine());
-                System.out.println("Giảm giá: ");
-                double discount = Double.parseDouble(sc.nextLine());
-                System.out.println("Thời gian giảm giá: ");
-                int duration = Integer.parseInt(sc.nextLine());
-                System.out.println("Khối lượng: ");
-                double weight = Double.parseDouble(sc.nextLine());
-                return new TrungNguyenCoffee(code, name, expiry, duration, manufacturingDate, price, discount, weight);
+                manufacturingDate = LocalDate.of(year, month, day);
+                break;
             } catch (NumberFormatException e) {
-                System.out.println(" nhập giá trị dương cho các giá trị");
+                System.out.println("mời bạn nhập số nguyên dương cho date");
             } catch (DateTimeParseException e) {
-                System.out.println("ngày ko hợp lệ, vui lòng nhập lại");
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("date ko hợp lệ");
             }
         }
+        double price = 0;
+        while (price <= 0 || price >= 100000000) {
+            try {
+                System.out.println("Giá bán: ");
+                price = Double.parseDouble(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        int expiry = 0;
+        while (expiry <= 0 || expiry >= 100000000) {
+            try {
+                System.out.println("Hạn sử dụng(tháng): ");
+                expiry = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        double discount = 0;
+        while (discount <= 0 || discount >= 100) {
+            try {
+                System.out.println("Giảm giá(%): ");
+                discount = Double.parseDouble(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        int duration = 0;
+        while (duration <= 0 || duration >= expiry) {
+            try {
+                System.out.println("Thời gian giảm giá(tháng): ");
+                duration = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        double weight = 0;
+        while (weight <= 0 || weight >= 100000000) {
+            try {
+                System.out.println("số lượng: ");
+                weight = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("mời bạn nhập số");
+            }
+        }
+        return new TrungNguyenCoffee(code, name, expiry, duration, manufacturingDate, price, discount, weight);
     }
 
     public void viewMassage(boolean result) {
@@ -183,6 +290,27 @@ public class ManageView {
     public void display(List<Coffee> coffeeList) {
         for (Coffee coffee : coffeeList) {
             System.out.println(coffee.toString());
+        }
+    }
+
+    public String inputSearch() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("nhập tên sản phẩm muốn tìm kiếm: ");
+        return sc.nextLine();
+    }
+
+    public void viewMassageSearch() {
+        System.out.println(" ko tìm thấy tên sản phẩm bạn muốn tìm kiếm");
+    }
+
+    public boolean confirm(Coffee product) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(product.toString());
+        System.out.println("bạn có muốn xóa sản phẩm trên ko? bấm y để xác nhận");
+        if (sc.nextLine().equalsIgnoreCase("y")) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
