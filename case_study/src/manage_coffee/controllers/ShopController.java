@@ -55,23 +55,28 @@ public class ShopController {
                     viewShop.viewCart(shopService.getAllCart());
                     break;
                 case 4:
-                    coffees = shopService.getAllCart();
-                    cartList = viewShop.getAmount(coffees);
-                    result = shopService.validateQuantityCart(cartList);
-                    if (result) {
-                        viewShop.viewMassageValidateCart();
+                    if(shopService.getAllCart().isEmpty()) {
+                        viewShop.viewMassageCartEmpty();
+                    }else{
+                        coffees = shopService.getAllCart();
                         cartList = viewShop.getAmount(coffees);
-                    } else {
-                        isconfirm = viewShop.confirmGetAmount(cartList);
-                        if (isconfirm) {
-                            totalMoney = shopService.getTotalMoney(cartList);
-                            shopService.updateListProduct(cartList);
-                            shopService.updateSaleData(cartList);
-                            viewShop.getTotalMoney(cartList, totalMoney);
-                            shopService.updateListCart();
-                            viewShop.viewProduct(coffees);
+                        result = shopService.validateQuantityCart(cartList);
+                        if (result) {
+                            viewShop.viewMassageValidateCart();
+                            cartList = viewShop.getAmount(coffees);
+                        } else {
+                            isconfirm = viewShop.confirmGetAmount(cartList);
+                            if (isconfirm) {
+                                totalMoney = shopService.getTotalMoney(cartList);
+                                shopService.updateListProduct(cartList);
+                                shopService.updateSaleData(cartList);
+                                viewShop.getTotalMoney(cartList, totalMoney);
+                                shopService.updateListCart();
+//                            viewShop.viewProduct(coffees);
+                            }
                         }
                     }
+
                     break;
                 case 0:
                     return;

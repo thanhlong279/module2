@@ -22,14 +22,14 @@ public class ShopView {
 
     public void viewProduct(List<Coffee> coffees) {
         for (Coffee coffee : coffees) {
-            System.out.println(coffee.toString());
+           coffee.printManage();
         }
     }
 
     public void viewCart(List<Coffee> coffees) {
         System.out.println("danh sách sản phẩm trong giỏ hàng: ");
         for (Coffee coffee : coffees) {
-            System.out.println("code: "+coffee.getCode()+" ,name: "+coffee.getName()+" ,giá bán: "+coffee.getPrice());
+            System.out.println("code: " + coffee.getCode() + " ,name: " + coffee.getName() + " ,giá bán: " + coffee.getPrice());
         }
     }
 
@@ -114,8 +114,14 @@ public class ShopView {
             code = coffee.getCode();
             name = coffee.getName();
             System.out.println(coffee.toString());
-            System.out.println("Nhập số lượng bạn mua: ");
-            quantity = Double.parseDouble(sc.nextLine());
+            while (quantity <= 0) {
+                try {
+                    System.out.println("Nhập số lượng bạn mua: ");
+                    quantity = Double.parseDouble(sc.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("nhập vào số lớn hơn 0");
+                }
+            }
             CustomerCart customerCart = new CustomerCart(code, name, quantity);
             list.add(customerCart);
         }
@@ -145,5 +151,9 @@ public class ShopView {
             System.out.println(customerCart.toString());
         }
         System.out.println("tổng số tiền cho đơn hàng trên: " + totalMoney + " VNĐ");
+    }
+
+    public void viewMassageCartEmpty() {
+        System.out.println("giỏ hàng trống, bạn chon thêm sản phẩm");
     }
 }

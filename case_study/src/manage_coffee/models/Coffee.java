@@ -83,15 +83,24 @@ public abstract class Coffee {
     @Override
     public String toString() {
         return
-                "code='" + code + '\'' +
-                        ", name='" + name + '\'' +
-                        ", date" + manufacturingDate +
-                        ", price=" + price +
-                        ", expiry=" + expiry +
-                        ", duration=" + duration +
-                        ", discount=" + discount +
-                        ',';
+                "code='" + code  +
+                        " name:" + name  +
+                        " date:" + manufacturingDate +
+                        " price:" + price +
+                        " expiry:" + expiry +
+                        " duration:" + duration +
+                        " discount:" + discount
+                        ;
     }
+
+    public void printDetails() {
+        System.out.printf("code=%-6s name=%-8s date=%-14s price=%-10.1f expiry=%-5d discount=%-10f%n",
+                code, name, manufacturingDate, price, expiry, discount);}
+
+
+    public void printManage() {
+        System.out.printf("code=%-6s name=%-8s date=%-14s price=%-10.1f expiry=%-5d duration=%-6d discount=%-10f%n",
+                code, name, manufacturingDate, price, expiry, duration, discount);}
 
     public abstract LocalDate getExpiryDate();
 

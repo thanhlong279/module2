@@ -289,7 +289,7 @@ public class ManageView {
 
     public void display(List<Coffee> coffeeList) {
         for (Coffee coffee : coffeeList) {
-            System.out.println(coffee.toString());
+            coffee.printManage();
         }
     }
 
