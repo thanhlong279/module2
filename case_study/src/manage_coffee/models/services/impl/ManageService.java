@@ -1,13 +1,13 @@
 package manage_coffee.models.services.impl;
 
 import manage_coffee.models.Coffee;
-import manage_coffee.models.repositories.RepositoryManage;
+import manage_coffee.models.repositories.ManageRepository;
 import manage_coffee.models.services.manage.IManageService;
 
 import java.util.List;
 
 public class ManageService implements IManageService {
-    private RepositoryManage repositoryCoffee = RepositoryManage.getInstance();
+    private ManageRepository repositoryCoffee = ManageRepository.getInstance();
     private static ManageService instance;
 
     private ManageService() {

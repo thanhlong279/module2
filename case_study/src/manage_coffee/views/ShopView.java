@@ -4,18 +4,18 @@ import manage_coffee.models.*;
 
 import java.util.*;
 
-public class ViewShop {
-    private static ViewShop instance;
+public class ShopView {
+    private static ShopView instance;
 
-    private ViewShop() {
+    private ShopView() {
     }
 
     ;
 
 
-    public synchronized static ViewShop getInstance() {
+    public synchronized static ShopView getInstance() {
         if (instance == null) {
-            instance = new ViewShop();
+            instance = new ShopView();
         }
         return instance;
     }
@@ -29,7 +29,7 @@ public class ViewShop {
     public void viewCart(List<Coffee> coffees) {
         System.out.println("danh sách sản phẩm trong giỏ hàng: ");
         for (Coffee coffee : coffees) {
-            System.out.println(coffee.toString());
+            System.out.println("code: "+coffee.getCode()+" ,name: "+coffee.getName()+" ,giá bán: "+coffee.getPrice());
         }
     }
 
@@ -81,19 +81,11 @@ public class ViewShop {
         return list;
     }
 
-//    public String inputIDProduct() {
-//        Scanner sc = new Scanner(System.in);
-//        String input;
-//            System.out.println("thêm sản phẩm vào giỏ hàng, bấm 'E' để dừng lại");
-//            input = sc.nextLine();
-//        return input;
-//    }
-
     public void viewMasageCart(boolean result) {
         if (result) {
             System.out.println("thao tác thành công");
         } else {
-            System.out.println("sản phẩm ko có trong cửa hàng");
+            System.out.println("sản phẩm bạn trọn ko có trong cửa hàng");
         }
     }
 
@@ -114,15 +106,17 @@ public class ViewShop {
 
     public List<CustomerCart> getAmount(List<Coffee> coffees) {
         Scanner sc = new Scanner(System.in);
-        String code = "";
+        String code;
+        String name;
         double quantity = 0;
         List<CustomerCart> list = new ArrayList<>();
         for (Coffee coffee : coffees) {
             code = coffee.getCode();
+            name = coffee.getName();
             System.out.println(coffee.toString());
             System.out.println("Nhập số lượng bạn mua: ");
             quantity = Double.parseDouble(sc.nextLine());
-            CustomerCart customerCart = new CustomerCart(code, quantity);
+            CustomerCart customerCart = new CustomerCart(code, name, quantity);
             list.add(customerCart);
         }
         return list;
@@ -150,6 +144,6 @@ public class ViewShop {
         for (CustomerCart customerCart : list) {
             System.out.println(customerCart.toString());
         }
-        System.out.println("tổng số tiền cho đơn hàng trên: " + totalMoney);
+        System.out.println("tổng số tiền cho đơn hàng trên: " + totalMoney + " VNĐ");
     }
 }

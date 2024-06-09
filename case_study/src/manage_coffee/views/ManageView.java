@@ -10,17 +10,17 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
-public class ViewManage {
-    private static ViewManage instance;
+public class ManageView {
+    private static ManageView instance;
 
-    private ViewManage() {
+    private ManageView() {
     }
 
     ;
 
-    public synchronized static ViewManage getInstance() {
+    public synchronized static ManageView getInstance() {
         if (instance == null) {
-            instance = new ViewManage();
+            instance = new ManageView();
         }
         return instance;
     }

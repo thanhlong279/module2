@@ -10,19 +10,19 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositoryManage {
+public class ManageRepository {
     private static String FILE_COFFEE = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\manage_coffee.csv";
     //    private static List<Coffee> coffeeList = new ArrayList<>();
-    private static RepositoryManage instance;
+    private static ManageRepository instance;
 
-    private RepositoryManage() {
+    private ManageRepository() {
     }
 
     ;
 
-    public synchronized static RepositoryManage getInstance() {
+    public synchronized static ManageRepository getInstance() {
         if (instance == null) {
-            instance = new RepositoryManage();
+            instance = new ManageRepository();
         }
         return instance;
     }

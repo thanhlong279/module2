@@ -5,22 +5,22 @@ import manage_coffee.models.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class RepositoryClient implements Serializable {
+public class ClientRepository implements Serializable {
     private static String FILE_CART = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\cart_client.csv";
     private static String FILE_COFFEE = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\manage_coffee.csv";
-    private static RepositoryClient instance;
+    private static String FILE_SALES = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\sale_data.txt";
+    private static ClientRepository instance;
 
-    private RepositoryClient() {
+    private ClientRepository() {
     }
 
     ;
 
-    public synchronized static RepositoryClient getInstance() {
+    public synchronized static ClientRepository getInstance() {
         if (instance == null) {
-            instance = new RepositoryClient();
+            instance = new ClientRepository();
         }
         return instance;
     }
@@ -181,36 +181,48 @@ public class RepositoryClient implements Serializable {
 
     public void updateFileProduct(List<CustomerCart> cartList) {
         List<Coffee> coffees = readFile(FILE_COFFEE);
+        List<Coffee> toRemove = new ArrayList<>();
         for (Coffee coffee : coffees) {
             for (CustomerCart customerCart : cartList) {
                 if (coffee instanceof HighlandsCoffee && coffee.getCode().equals(customerCart.getCode())) {
                     ((HighlandsCoffee) coffee).setQuantity((int) (((HighlandsCoffee) coffee).getQuantity() - customerCart.getQuantity()));
                     if (((HighlandsCoffee) coffee).getQuantity() == 0) {
-                        coffees.remove(coffee);
+                        toRemove.add(coffee);
                     }
                 }
                 if (coffee instanceof Nescafe && coffee.getCode().equals(customerCart.getCode())) {
                     ((Nescafe) coffee).setQuantity((int) (((Nescafe) coffee).getQuantity() - customerCart.getQuantity()));
                     if (((Nescafe) coffee).getQuantity() == 0) {
-                        coffees.remove(coffee);
+                        toRemove.add(coffee);
                     }
                 }
                 if (coffee instanceof TrungNguyenCoffee && coffee.getCode().equals(customerCart.getCode())) {
                     ((TrungNguyenCoffee) coffee).setWeight(((TrungNguyenCoffee) coffee).getWeight() - customerCart.getQuantity());
                     if (((TrungNguyenCoffee) coffee).getWeight() == 0) {
-                        coffees.remove(coffee);
+                        toRemove.add(coffee);
                     }
                 }
             }
         }
+        coffees.removeAll(toRemove);
         writeFile(coffees, false, FILE_COFFEE);
     }
 
     public void updateFileCart() {
-        List<Coffee> newCartList = readFile(FILE_CART);
-        for (Coffee coffee : newCartList) {
-            newCartList.remove(coffee);
-        }
+        List<Coffee> newCartList = new ArrayList<>();
         writeFile(newCartList, false, FILE_CART);
     }
+
+    public void updateSaleDate(List<CustomerCart> cartList) {
+        double totalMoney = getTotalMoney(cartList);
+        String saleInfo = "Date: " + LocalDate.now() + ", Total Money: " + totalMoney+ " VNĐ";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_SALES, true))) {
+            writer.write(saleInfo);
+            writer.newLine();
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
+    }
+
+
 }

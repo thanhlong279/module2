@@ -24,7 +24,10 @@ public interface IShopService {
     double getTotalMoney(List<CustomerCart> cartList);
 
     void updateListProduct(List<CustomerCart> cartList);
+
     void updateListCart();
-//    List<Coffee> validateCart(String list);
+
+    void updateSaleDate(List<CustomerCart> customerCart);
+
 }
 

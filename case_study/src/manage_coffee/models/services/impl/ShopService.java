@@ -1,7 +1,7 @@
 package manage_coffee.models.services.impl;
 
 import manage_coffee.models.*;
-import manage_coffee.models.repositories.RepositoryClient;
+import manage_coffee.models.repositories.ClientRepository;
 import manage_coffee.models.services.shop.IShopService;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class ShopService implements IShopService {
         return instance;
     }
 
-    RepositoryClient repositoryClient = RepositoryClient.getInstance();
+    ClientRepository repositoryClient = ClientRepository.getInstance();
 
     @Override
     public List<Coffee> getAllProduct() {
@@ -64,15 +64,17 @@ public class ShopService implements IShopService {
             boolean isValid = true;
             for (Coffee coffee : listCart) {
                 if (coffee instanceof HighlandsCoffee && coffee.getCode().equals(customerCart.getCode())) {
-                    if (((HighlandsCoffee) coffee).getQuantity() >= customerCart.getQuantity()) {
+                    if (((HighlandsCoffee) coffee).getQuantity() < customerCart.getQuantity()) {
                         isValid = false;
                     }
-                } if (coffee instanceof Nescafe && coffee.getCode().equals(customerCart.getCode())) {
-                    if (((Nescafe) coffee).getQuantity() >= customerCart.getQuantity()) {
+                }
+                if (coffee instanceof Nescafe && coffee.getCode().equals(customerCart.getCode())) {
+                    if (((Nescafe) coffee).getQuantity() < customerCart.getQuantity()) {
                         isValid = false;
                     }
-                } if (coffee instanceof TrungNguyenCoffee && coffee.getCode().equals(customerCart.getCode())) {
-                    if (((TrungNguyenCoffee) coffee).getWeight() >= customerCart.getQuantity()) {
+                }
+                if (coffee instanceof TrungNguyenCoffee && coffee.getCode().equals(customerCart.getCode())) {
+                    if (((TrungNguyenCoffee) coffee).getWeight() < customerCart.getQuantity()) {
                         isValid = false;
                     }
                 }
@@ -99,26 +101,10 @@ public class ShopService implements IShopService {
         repositoryClient.updateFileCart();
     }
 
-
-//    public double getTotalMoney(List<CustomerCart> cartList) {
-//        double totalHighlandsCoffee = 0;
-//        double totalTrungNguyenCoffee = 0;
-//        double totalNescafe = 0;
-//        List<Coffee> listCart = getAllCart();
-//        for (CustomerCart customerCart : cartList) {
-//            for (Coffee coffee : listCart) {
-//                if (coffee instanceof HighlandsCoffee && coffee.getCode().equals(customerCart.getCode())) {
-//                    totalHighlandsCoffee += coffee.getReadMoney() * customerCart.getQuantity();
-//                } if (coffee instanceof Nescafe && coffee.getCode().equals(customerCart.getCode())) {
-//                    totalNescafe += coffee.getReadMoney() * customerCart.getQuantity();
-//                } if (coffee instanceof TrungNguyenCoffee && coffee.getCode().equals(customerCart.getCode())) {
-//                    totalTrungNguyenCoffee += coffee.getReadMoney() * customerCart.getQuantity();
-//                }
-//            }
-//        }
-//        return totalNescafe + totalHighlandsCoffee + totalTrungNguyenCoffee;
-//    }
-
+    @Override
+    public void updateSaleDate(List<CustomerCart> customerCart) {
+        repositoryClient.updateSaleDate(customerCart);
+    }
 }
 
 

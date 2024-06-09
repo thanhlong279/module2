@@ -4,14 +4,13 @@ import manage_coffee.models.Coffee;
 import manage_coffee.models.CustomerCart;
 import manage_coffee.models.services.impl.ShopService;
 import manage_coffee.models.services.shop.IShopService;
-import manage_coffee.views.ViewShop;
+import manage_coffee.views.ShopView;
 
 import java.util.List;
-import java.util.Map;
 
-public class ControllerShop {
+public class ShopController {
     public static void main(String[] args) {
-        ViewShop viewShop = ViewShop.getInstance();
+        ShopView viewShop = ShopView.getInstance();
         IShopService shopService = ShopService.getInstance();
         List<Coffee> coffees;
         List<String> list;
@@ -67,8 +66,10 @@ public class ControllerShop {
                         if (isconfirm) {
                             totalMoney = shopService.getTotalMoney(cartList);
                             shopService.updateListProduct(cartList);
-                            shopService.updateListCart();
+                            shopService.updateSaleDate(cartList);
                             viewShop.getTotalMoney(cartList, totalMoney);
+                            shopService.updateListCart();
+                            viewShop.viewProduct(coffees);
                         }
                     }
                     break;

@@ -88,8 +88,8 @@ public abstract class Coffee {
                         ", date" + manufacturingDate +
                         ", price=" + price +
                         ", expiry=" + expiry +
-                        ", discount=" + discount +
                         ", duration=" + duration +
+                        ", discount=" + discount +
                         ',';
     }
 
