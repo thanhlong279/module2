@@ -25,4 +25,11 @@ public abstract class FinishedCoffee extends Coffee {
     public String toString() {
         return super.toString() + " Quantity: " + quantity;
     }
+    @Override
+    public void printManage() {
+        System.out.printf("code=%-6s name=%-8s date=%-14s price=%-10.1f expiry=%-5d duration=%-6d discount=%-10.1f quantity=%-8d%n",
+                getCode(), getName(), getManufacturingDate(), getPrice(), getExpiry(), getDuration(), getDiscount(), quantity);}
+    public void printShop() {
+        System.out.printf("code=%-6s name=%-8s date=%-14s price=%-10.0f expiry=%-5d discount=%-10.0f quantity=%-8d%n",
+                getCode(), getName(), getManufacturingDate(), getPrice(), getExpiry(), getDiscount(), quantity);}
 }

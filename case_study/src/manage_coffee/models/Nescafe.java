@@ -3,25 +3,6 @@ package manage_coffee.models;
 import java.time.LocalDate;
 
 public class Nescafe extends FinishedCoffee {
-//    private int quantity;
-//
-//    public Nescafe() {
-//    }
-//
-//    public Nescafe(String code, String name, int expiry, int duration, LocalDate manufacturingDate, double price, double discount, int boxCoffee) {
-//        super(code, name, expiry, duration, manufacturingDate, price, discount);
-//        this.quantity = boxCoffee;
-//    }
-//
-//    public int getQuantity() {
-//        return quantity;
-//    }
-//
-//    public void setQuantity(int quantity) {
-//        this.quantity = quantity;
-//    }
-
-
     public Nescafe() {
     }
 

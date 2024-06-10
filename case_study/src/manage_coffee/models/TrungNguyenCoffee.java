@@ -41,4 +41,12 @@ public class TrungNguyenCoffee extends Coffee {
     public String toString() {
         return super.toString() + " weight: " + weight;
     }
+    @Override
+    public void printManage() {
+        System.out.printf("code=%-6s name=%-8s date=%-14s price=%-10.0f expiry=%-5d duration=%-6d discount=%-10.0f weight=%-8.0f%n",
+                getCode(), getName(), getManufacturingDate(), getPrice(), getExpiry(), getDuration(), getDiscount(), weight);}
+    public void printShop() {
+        System.out.printf("code=%-6s name=%-8s date=%-14s price=%-10.0f expiry=%-5d discount=%-10.0f weight=%-8.0f%n",
+                getCode(), getName(), getManufacturingDate(), getPrice(), getExpiry(), getDiscount(), weight);}
+
 }

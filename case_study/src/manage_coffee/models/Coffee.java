@@ -93,14 +93,9 @@ public abstract class Coffee {
                         ;
     }
 
-    public void printDetails() {
-        System.out.printf("code=%-6s name=%-8s date=%-14s price=%-10.1f expiry=%-5d discount=%-10f%n",
-                code, name, manufacturingDate, price, expiry, discount);}
+    public abstract void printShop();
 
-
-    public void printManage() {
-        System.out.printf("code=%-6s name=%-8s date=%-14s price=%-10.1f expiry=%-5d duration=%-6d discount=%-10.1f%n",
-                code, name, manufacturingDate, price, expiry, duration, discount);}
+    public abstract void printManage();
 
     public abstract LocalDate getExpiryDate();
 

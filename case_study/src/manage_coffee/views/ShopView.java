@@ -21,8 +21,9 @@ public class ShopView {
     }
 
     public void viewProduct(List<Coffee> coffees) {
+        System.out.println("----------------------------------------------DANH SÁCH SẢN PHẨM----------------------------------------------");
         for (Coffee coffee : coffees) {
-            System.out.println(coffee.toString());
+            coffee.printShop();
         }
     }
 

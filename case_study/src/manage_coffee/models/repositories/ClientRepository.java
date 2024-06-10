@@ -66,19 +66,19 @@ public class ClientRepository implements Serializable {
             bufferedReader = new BufferedReader(fileReader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                if (line.contains("HLC")) {
+                if (line.startsWith("HLC")) {
                     String[] temp = line.replaceAll("-", ",").split(",");
                     coffeeList.add(new HighlandsCoffee(temp[0], temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3]),
                             LocalDate.of(Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6])),
                             Double.parseDouble(temp[7]), Double.parseDouble(temp[8]), Integer.parseInt(temp[9])));
                 }
-                if (line.contains("NCC")) {
+                if (line.startsWith("NCC")) {
                     String[] temp = line.replaceAll("-", ",").split(",");
                     coffeeList.add(new Nescafe(temp[0], temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3]),
                             LocalDate.of(Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6])),
                             Double.parseDouble(temp[7]), Double.parseDouble(temp[8]), Integer.parseInt(temp[9])));
                 }
-                if (line.contains("TNC")) {
+                if (line.startsWith("TNC")) {
                     String[] temp = line.replaceAll("-", ",").split(",");
                     coffeeList.add(new TrungNguyenCoffee(temp[0], temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3]),
                             LocalDate.of(Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6])),
@@ -224,28 +224,4 @@ public class ClientRepository implements Serializable {
             System.err.println("Error writing to file: " + e.getMessage());
         }
     }
-
-//    public void updateSaleData(List<CustomerCart> cartList) {
-//        double totalMoney = getTotalMoney(cartList);
-//        File file = new File(FILE_SALES);
-//        FileWriter fileWriter = null;
-//        BufferedWriter bufferedWriter = null;
-//        Bill bill = new Bill(LocalDate.now(), LocalTime.now().withNano(0), totalMoney);
-//        try {
-//            fileWriter = new FileWriter(file, true);
-//            bufferedWriter = new BufferedWriter(fileWriter);
-//                bufferedWriter.write(String.valueOf(bill));
-//        } catch (IOException e) {
-//            System.out.println("Lỗi ghi file");
-//        } finally {
-//            if(bufferedWriter !=null) {
-//                try {
-//                    bufferedWriter.close();
-//                } catch (IOException e) {
-//                    System.out.println("Lỗi đóng file");
-//                }
-//            }
-//        }
-//    }
-
 }

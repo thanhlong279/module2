@@ -45,19 +45,19 @@ public class ManageRepository {
             bufferedReader = new BufferedReader(fileReader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                if (line.contains("HLC")) {
+                if (line.startsWith("HLC")) {
                     String[] temp = line.replaceAll("-", ",").split(",");
                     coffeeList.add(new HighlandsCoffee(temp[0], temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3]),
                             LocalDate.of(Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6])),
                             Double.parseDouble(temp[7]), Double.parseDouble(temp[8]), Integer.parseInt(temp[9])));
                 }
-                if (line.contains("NCC")) {
+                if (line.startsWith("NCC")) {
                     String[] temp = line.replaceAll("-", ",").split(",");
                     coffeeList.add(new Nescafe(temp[0], temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3]),
                             LocalDate.of(Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6])),
                             Double.parseDouble(temp[7]), Double.parseDouble(temp[8]), Integer.parseInt(temp[9])));
                 }
-                if (line.contains("TNC")) {
+                if (line.startsWith("TNC")) {
                     String[] temp = line.replaceAll("-", ",").split(",");
                     coffeeList.add(new TrungNguyenCoffee(temp[0], temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3]),
                             LocalDate.of(Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6])),
