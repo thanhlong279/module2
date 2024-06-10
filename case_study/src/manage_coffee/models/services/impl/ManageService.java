@@ -1,11 +1,13 @@
 package manage_coffee.models.services.impl;
 
+import manage_coffee.models.Bill;
 import manage_coffee.models.Coffee;
 import manage_coffee.models.FinishedCoffee;
 import manage_coffee.models.TrungNguyenCoffee;
 import manage_coffee.models.repositories.ManageRepository;
 import manage_coffee.models.services.manage.IManageService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,8 +114,13 @@ public class ManageService implements IManageService {
     }
 
     @Override
-    public void readFileSale() {
-        repositoryCoffee.readFileSale();
+    public List<Bill> readFileSale() {
+        return repositoryCoffee.readFileSale();
+    }
+
+    @Override
+    public double totalSaleAmount(LocalDate date) {
+        return repositoryCoffee.getTotalSaleAmount(date);
     }
 
 }

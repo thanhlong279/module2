@@ -11,7 +11,7 @@ import java.util.List;
 public class ClientRepository implements Serializable {
     private static String FILE_CART = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\cart_client.csv";
     private static String FILE_COFFEE = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\manage_coffee.csv";
-    private static String FILE_SALES = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\sale_data.txt";
+    private static String FILE_SALES = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\sale_data_txt";
     private static ClientRepository instance;
 
     private ClientRepository() {
@@ -216,7 +216,7 @@ public class ClientRepository implements Serializable {
 
     public void updateSaleData(List<CustomerCart> cartList) {
         double totalMoney = getTotalMoney(cartList);
-        String saleInfo = "Date: " +LocalDate.now()+" "+LocalTime.now().withNano(0) + " Total Money: " + totalMoney+ " VNĐ";
+        String saleInfo = LocalDate.now()+","+LocalTime.now().withNano(0)+","+totalMoney;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_SALES, true))) {
             writer.write(saleInfo);
             writer.newLine();
@@ -225,5 +225,27 @@ public class ClientRepository implements Serializable {
         }
     }
 
+//    public void updateSaleData(List<CustomerCart> cartList) {
+//        double totalMoney = getTotalMoney(cartList);
+//        File file = new File(FILE_SALES);
+//        FileWriter fileWriter = null;
+//        BufferedWriter bufferedWriter = null;
+//        Bill bill = new Bill(LocalDate.now(), LocalTime.now().withNano(0), totalMoney);
+//        try {
+//            fileWriter = new FileWriter(file, true);
+//            bufferedWriter = new BufferedWriter(fileWriter);
+//                bufferedWriter.write(String.valueOf(bill));
+//        } catch (IOException e) {
+//            System.out.println("Lỗi ghi file");
+//        } finally {
+//            if(bufferedWriter !=null) {
+//                try {
+//                    bufferedWriter.close();
+//                } catch (IOException e) {
+//                    System.out.println("Lỗi đóng file");
+//                }
+//            }
+//        }
+//    }
 
 }

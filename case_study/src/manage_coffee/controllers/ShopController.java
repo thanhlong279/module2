@@ -29,7 +29,7 @@ public class ShopController {
                     list = viewShop.addCart();
                     coffees = shopService.addCart(list);
                     if (coffees.isEmpty()) {
-                        System.out.println("ko có sản phẩm bạn chọn trong cửa hàng");
+                        viewShop.viewMassageClient();
                     } else {
                         viewShop.viewCart(shopService.getAllCart());
                     }
@@ -40,7 +40,7 @@ public class ShopController {
                     list = viewShop.deleteCart();
                     coffees = shopService.findByID(list);
                     if (coffees.isEmpty()) {
-                        System.out.println("ko có sản phẩm bạn trọn trong giỏ hàng");
+                        viewShop.viewCart(shopService.getAllCart());
                     } else {
                         result = viewShop.confirmDeleteInCart(coffees);
                         if (result) {

@@ -1,9 +1,6 @@
 package manage_coffee.models.repositories;
 
-import manage_coffee.models.Coffee;
-import manage_coffee.models.HighlandsCoffee;
-import manage_coffee.models.Nescafe;
-import manage_coffee.models.TrungNguyenCoffee;
+import manage_coffee.models.*;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -12,7 +9,7 @@ import java.util.List;
 
 public class ManageRepository {
     private static String FILE_COFFEE = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\manage_coffee.csv";
-    private static String FILE_SALES = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\sale_data.csv";
+    private static String FILE_SALES = "D:\\code_gym\\module_2_java\\session\\module2\\case_study\\src\\sale_data_txt";
     //    private static List<Coffee> coffeeList = new ArrayList<>();
     private static ManageRepository instance;
 
@@ -151,8 +148,9 @@ public class ManageRepository {
         }
     }
 
-    public void readFileSale() {
+    public List<Bill> readFileSale() {
         File file = new File(FILE_SALES);
+        List<Bill> listBill = new ArrayList<>();
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
         try {
@@ -160,7 +158,9 @@ public class ManageRepository {
             bufferedReader = new BufferedReader(fileReader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
+                String[] temp = line.replaceAll("-", ",").split(",");
+                listBill.add(new Bill(LocalDate.of(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), Integer.parseInt(temp[2])),
+                        temp[3], Double.parseDouble(temp[4])));
             }
         } catch (FileNotFoundException e) {
             System.out.println("ko tìm thấy file");
@@ -175,7 +175,17 @@ public class ManageRepository {
                 }
             }
         }
+        return listBill;
     }
 
-
+    public double getTotalSaleAmount(LocalDate date) {
+        double total = 0;
+        List<Bill> listBill = readFileSale();
+        for(int i = 0; i < listBill.size(); i++) {
+            if(listBill.get(i).getDate().isEqual(date)){
+                total += listBill.get(i).getTotalMoney();
+            }
+        }
+        return total;
+    }
 }

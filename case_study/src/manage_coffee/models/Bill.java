@@ -5,13 +5,13 @@ import java.time.LocalTime;
 
 public class Bill {
     private LocalDate date;
-    private LocalTime time;
+    private String time;
     private double totalMoney;
 
-    public Bill(){
+    public Bill(LocalDate now, LocalTime localTime, double totalMoney){
     }
 
-    public Bill(LocalDate date, LocalTime time, double totalMoney) {
+    public Bill(LocalDate date, String time, double totalMoney) {
         this.date = date;
         this.time = time;
         this.totalMoney = totalMoney;
@@ -25,11 +25,11 @@ public class Bill {
         this.date = date;
     }
 
-    public LocalTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -39,5 +39,10 @@ public class Bill {
 
     public void setTotalMoney(double totalMoney) {
         this.totalMoney = totalMoney;
+    }
+
+    @Override
+    public String toString() {
+        return date + "," + time + "," + totalMoney;
     }
 }

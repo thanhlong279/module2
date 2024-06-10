@@ -1,7 +1,9 @@
 package manage_coffee.models.services;
 
+import manage_coffee.models.Bill;
 import manage_coffee.models.Coffee;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IService<T extends Coffee> {
@@ -19,6 +21,7 @@ public interface IService<T extends Coffee> {
 
     void editProduct(T t);
 
-    void readFileSale();
+    List<Bill> readFileSale();
 
+    double totalSaleAmount(LocalDate date);
 }

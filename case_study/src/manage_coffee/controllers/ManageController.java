@@ -5,6 +5,7 @@ import manage_coffee.models.services.IService;
 import manage_coffee.models.services.impl.ManageService;
 import manage_coffee.views.ManageView;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,39 +13,21 @@ public class ManageController {
     public static void main(String[] args) {
         ManageView manageView = ManageView.getInstance();
         IService<Coffee> manageService = ManageService.getInstance();
-        Auth auth = new Auth();
-        Scanner sc = new Scanner(System.in);
-        boolean authenticated = false;
-        int logIn = 0;
-        while (logIn < 5 && !authenticated) {
-            System.out.println("đăng nhập tài khoản và mật khẩu");
-            System.out.print("Username: ");
-            String username = sc.nextLine();
-            System.out.print("Password: ");
-            String password = sc.nextLine();
-            if (auth.authUser(username, password)) {
-                authenticated = true;
-                System.out.println("Đăng nhập thành công");
-            } else {
-                logIn++;
-                System.out.println("tài khoản hoặc mật khẩu ko đúng " + (5 - logIn) + " lần thử");
-            }
-        }
-        if (!authenticated) {
-            System.out.println("sai quá nhiều, mời bạn thử lại sau");
-            return;
-        }
-
-
+        Auth auth = Auth.getInstance();
         int choice;
         int choiceProduct;
         Coffee product;
         boolean result;
+        List<Bill> listBill;
         List<Coffee> coffeeList;
         String name;
         boolean isConfirm;
         String code;
         Coffee updateProduct;
+        if(!manageView.authUser(auth)){
+            manageView.messageAuthUser();
+            return;
+        }
         while (true) {
             choice = manageView.viewMenu();
             switch (choice) {
@@ -126,7 +109,13 @@ public class ManageController {
                     }
                     break;
                 case 6:
-                    manageService.readFileSale();
+                    listBill =  manageService.readFileSale();
+                    manageView.viewSaleDate(listBill);
+                    break;
+                case 7:
+                    LocalDate date = manageView.inputDate();
+                    double totalSaleAmount = manageService.totalSaleAmount(date);
+                    manageView.getTotalSaleAmount(totalSaleAmount);
                     break;
                 case 0:
                     return;

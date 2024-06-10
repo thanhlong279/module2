@@ -22,7 +22,7 @@ public class ShopView {
 
     public void viewProduct(List<Coffee> coffees) {
         for (Coffee coffee : coffees) {
-           coffee.printManage();
+            System.out.println(coffee.toString());
         }
     }
 
@@ -92,7 +92,7 @@ public class ShopView {
     public boolean confirmDeleteInCart(List<Coffee> coffees) {
         System.out.println("bạn có muốn xóa: ");
         for (Coffee coffee : coffees) {
-            System.out.println(coffee.toString());
+            System.out.println("code: " + coffee.getCode() + " ,name: " + coffee.getName() + " ,giá bán: " + coffee.getPrice());
         }
         System.out.println(" bấm 'y' để xác nhận, 'n' để hủy bỏ");
         Scanner sc = new Scanner(System.in);
@@ -113,15 +113,15 @@ public class ShopView {
         for (Coffee coffee : coffees) {
             code = coffee.getCode();
             name = coffee.getName();
-            System.out.println(coffee.toString());
-            while (quantity <= 0) {
-                try {
+            System.out.println("code: " + coffee.getCode() + " ,name: " + coffee.getName() + " ,giá bán: " + coffee.getPrice());
+//            while (quantity >= 0) {
+//                try {
                     System.out.println("Nhập số lượng bạn mua: ");
                     quantity = Double.parseDouble(sc.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("nhập vào số lớn hơn 0");
-                }
-            }
+//                } catch (NumberFormatException e) {
+//                    System.out.println("nhập vào số lớn hơn 0");
+//                }
+//            }
             CustomerCart customerCart = new CustomerCart(code, name, quantity);
             list.add(customerCart);
         }
@@ -155,5 +155,9 @@ public class ShopView {
 
     public void viewMassageCartEmpty() {
         System.out.println("giỏ hàng trống, bạn chon thêm sản phẩm");
+    }
+
+    public void viewMassageClient() {
+        System.out.println("ko tìm thấy sản phẩm");
     }
 }
