@@ -46,7 +46,7 @@ public class ShopController {
                         if (result) {
                             shopService.deleteProductInCart(list);
                             viewShop.viewMassageCart(true);
-                            System.out.println("sản phẩm trong giỏ hàng của bạn: ");
+                            viewShop.viewMassageClient();
                             viewShop.viewCart(shopService.getAllCart());
                         }
                         break;
@@ -63,7 +63,7 @@ public class ShopController {
                         result = shopService.validateQuantityCart(cartList);
                         if (result) {
                             viewShop.viewMassageValidateCart();
-                            cartList = viewShop.getAmount(coffees);
+//                            cartList = viewShop.getAmount(coffees);
                         } else {
                             isconfirm = viewShop.confirmGetAmount(cartList);
                             if (isconfirm) {

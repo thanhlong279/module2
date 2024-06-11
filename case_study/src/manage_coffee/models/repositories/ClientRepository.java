@@ -26,13 +26,7 @@ public class ClientRepository implements Serializable {
         return instance;
     }
 
-    public void addCart(Coffee coffee) {
-        List<Coffee> coffeeList = readFile(FILE_CART);
-        coffeeList.add(coffee);
-        writeFile(coffeeList, false, FILE_CART);
-    }
-
-    public void writeFile(List<Coffee> coffeeList, boolean apprnd, String nameFile) {
+    private void writeFile(List<Coffee> coffeeList, boolean apprnd, String nameFile) {
         File file = new File(nameFile);
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
@@ -56,7 +50,7 @@ public class ClientRepository implements Serializable {
         }
     }
 
-    public List<Coffee> readFile(String fileName) {
+    private List<Coffee> readFile(String fileName) {
         List<Coffee> coffeeList = new ArrayList<>();
         File file = new File(fileName);
         FileReader fileReader = null;

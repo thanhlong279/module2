@@ -7,7 +7,6 @@ import manage_coffee.views.ManageView;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Scanner;
 
 public class ManageController {
     public static void main(String[] args) {
@@ -24,7 +23,7 @@ public class ManageController {
         boolean isConfirm;
         String code;
         Coffee updateProduct;
-        if(!manageView.authUser(auth)){
+        if (!manageView.authUser(auth)) {
             manageView.messageAuthUser();
             return;
         }
@@ -109,13 +108,19 @@ public class ManageController {
                     }
                     break;
                 case 6:
-                    listBill =  manageService.readFileSale();
+                    listBill = manageService.readFileSale();
                     manageView.viewSaleDate(listBill);
                     break;
                 case 7:
                     LocalDate date = manageView.inputDate();
-                    double totalSaleAmount = manageService.totalSaleAmount(date);
-                    manageView.getTotalSaleAmount(totalSaleAmount);
+                    result = manageService.validateDateSale(date);
+                    if (!result) {
+                        manageView.massageValidateDateSale();
+                    } else {
+                        double totalSaleAmount = manageService.totalSaleAmount(date);
+                        manageView.getTotalSaleAmount(totalSaleAmount);
+                    }
+
                     break;
                 case 0:
                     return;

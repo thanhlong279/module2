@@ -315,7 +315,7 @@ public class ManageView {
         Scanner sc = new Scanner(System.in);
         boolean authenticated = false;
         int logIn = 0;
-        while (logIn < 5 && !authenticated) {
+        while (logIn < 3 && !authenticated) {
             System.out.println("đăng nhập tài khoản và mật khẩu");
             System.out.print("Username: ");
             String username = sc.nextLine();
@@ -326,7 +326,7 @@ public class ManageView {
                 System.out.println("Đăng nhập thành công");
             } else {
                 logIn++;
-                System.out.println("tài khoản hoặc mật khẩu ko đúng " + (5 - logIn) + " lần thử");
+                System.out.println("tài khoản hoặc mật khẩu ko đúng " + (3 - logIn) + " lần thử");
             }
         }
         if (!authenticated) {
@@ -337,7 +337,7 @@ public class ManageView {
     }
 
     public void messageAuthUser() {
-        System.out.println("\"sai quá 5 lần, mời bạn thử lại sau: \"");
+        System.out.println("\"sai quá 3 lần, mời bạn thử lại sau: \"");
     }
 
     public void viewSaleDate(List<Bill> listBill) {
@@ -368,6 +368,10 @@ public class ManageView {
                 System.out.println("sai định dạng ngày");
             }
         }
+    }
+
+    public void massageValidateDateSale() {
+        System.out.println("ko tìm thấy ngày trong danh sách bán hàng");
     }
 }
 

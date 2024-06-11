@@ -48,7 +48,7 @@ public class ShopView {
                 System.out.println("Mời bạn chọn chức năng");
                 choice = Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
-                System.err.println("nhập số nguyên từ 0-2 để trọn chức năng");
+                System.err.println("nhập số nguyên từ 0-4 để trọn chức năng");
             }
         } while (choice < 0 || choice > 4);
         return choice;
@@ -115,14 +115,8 @@ public class ShopView {
             code = coffee.getCode();
             name = coffee.getName();
             System.out.println("code: " + coffee.getCode() + " ,name: " + coffee.getName() + " ,giá bán: " + coffee.getPrice());
-//            while (quantity >= 0) {
-//                try {
-                    System.out.println("Nhập số lượng bạn mua: ");
-                    quantity = Double.parseDouble(sc.nextLine());
-//                } catch (NumberFormatException e) {
-//                    System.out.println("nhập vào số lớn hơn 0");
-//                }
-//            }
+            System.out.println("Nhập số lượng bạn mua: ");
+            quantity = Double.parseDouble(sc.nextLine());
             CustomerCart customerCart = new CustomerCart(code, name, quantity);
             list.add(customerCart);
         }

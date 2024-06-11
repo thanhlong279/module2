@@ -35,7 +35,7 @@ public class ManageRepository {
         return new ArrayList<>(readFile(FILE_COFFEE));
     }
 
-    public List<Coffee> readFile(String fileName) {
+    private List<Coffee> readFile(String fileName) {
         List<Coffee> coffeeList = new ArrayList<>();
         File file = new File(fileName);
         FileReader fileReader = null;
@@ -80,7 +80,7 @@ public class ManageRepository {
         return coffeeList;
     }
 
-    public void writeFile(List<Coffee> coffeeList, boolean apprnd, String fileName) {
+    private void writeFile(List<Coffee> coffeeList, boolean apprnd, String fileName) {
         File file = new File(fileName);
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;

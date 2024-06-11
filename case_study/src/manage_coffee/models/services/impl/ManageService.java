@@ -58,6 +58,9 @@ public class ManageService implements IManageService {
         if (coffee.getExpiry() < coffee.getDuration()) {
             return false;
         }
+        if(coffee.getManufacturingDate().compareTo(LocalDate.now()) > 0) {
+            return false;
+        }
         if (coffee instanceof FinishedCoffee) {
             if (((FinishedCoffee) coffee).getQuantity() < 0) {
                 return false;
@@ -121,6 +124,20 @@ public class ManageService implements IManageService {
     @Override
     public double totalSaleAmount(LocalDate date) {
         return repositoryCoffee.getTotalSaleAmount(date);
+    }
+
+    @Override
+    public boolean validateDateSale(LocalDate date) {
+        List<Bill> listBill = repositoryCoffee.readFileSale();
+        for (Bill bill : listBill) {
+            if(bill.getDate().isEqual(date)){
+                return true;
+            }
+            if(date.compareTo(LocalDate.now()) < 0){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
