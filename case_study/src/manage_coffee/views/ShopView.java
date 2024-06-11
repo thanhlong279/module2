@@ -109,17 +109,26 @@ public class ShopView {
         Scanner sc = new Scanner(System.in);
         String code;
         String name;
-        double quantity = 0;
-        List<CustomerCart> list = new ArrayList<>();
-        for (Coffee coffee : coffees) {
-            code = coffee.getCode();
-            name = coffee.getName();
-            System.out.println("code: " + coffee.getCode() + " ,name: " + coffee.getName() + " ,giá bán: " + coffee.getPrice());
-            System.out.println("Nhập số lượng bạn mua: ");
-            quantity = Double.parseDouble(sc.nextLine());
-            CustomerCart customerCart = new CustomerCart(code, name, quantity);
-            list.add(customerCart);
-        }
+        double quantity = -1;
+        List<CustomerCart> list = null;
+        do {
+            try {
+                list = new ArrayList<>();
+                for (Coffee coffee : coffees) {
+                    code = coffee.getCode();
+                    name = coffee.getName();
+                    System.out.println("code: " + coffee.getCode() + " ,name: " + coffee.getName() + " ,giá bán: " + coffee.getPrice());
+                    System.out.println("Nhập số lượng bạn mua: ");
+                    quantity = Double.parseDouble(sc.nextLine());
+                    CustomerCart customerCart = new CustomerCart(code, name, quantity);
+                    list.add(customerCart);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("nhập sai định dạng, nhập sô nguyên > 0 cho quantity/weight");
+            }
+        }while (quantity <= 0 || quantity > 100000);
+
+
         return list;
     }
 

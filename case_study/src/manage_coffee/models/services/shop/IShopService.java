@@ -7,7 +7,7 @@ import manage_coffee.models.services.IService;
 import java.util.List;
 import java.util.Map;
 
-public interface IShopService {
+public interface IShopService{
 
     List<Coffee> getAllProduct();
 
