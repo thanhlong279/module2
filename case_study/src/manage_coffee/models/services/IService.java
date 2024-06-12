@@ -7,12 +7,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface IService<T extends Coffee> {
-    boolean
-    addCoffee(T t);
+    boolean addCoffee(T t);
 
     boolean validateCoffee(T t);
 
-    List<Coffee> getAll();
+    List<T> getAll();
 
     List<T> searchByName(String name);
 
